@@ -10,7 +10,15 @@ int main()
 	printf("Welcome to Lab select page!\n");
 	printf("______________________________________\n");
 	printf("Choose which lab you want to display:\n");
-	printf("1.1 - Lab1\n1.2 - Lab2\n\n2.1 - Self Train 1\n2.2 - Self Train 2\n\n3 - Ascii\n4 - Test\n5 - Console commands\n\nExit - Quit\n");
+	printf("1.1 - Lab1\n"
+		   "1.2 - Lab2\n\n"
+		   "2.1 - Self Train 1\n"
+		   "2.2 - Self Train 2\n\n"
+		   "3 - Ascii\n"
+		   "4 - Test\n"
+		   "5 - Console commands\b"
+		   "6 - Pause\n\n"
+		   "Exit - Quit\n");
 	printf("Enter your choise: ");
 
 	scanf("%s", &lab_name);
@@ -63,6 +71,12 @@ int main()
 		printf("\n");
 		printf("Enter console command: ");
 		cmd();
+	}
+
+	else if (strcmp(lab_name, "6") == 0)
+	{
+		printf("\n");
+		system("pause");
 	}
 
 	else
