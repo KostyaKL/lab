@@ -16,7 +16,7 @@ int main()
 		   "2.2 - Self Train 2\n\n"
 		   "3 - Ascii\n"
 		   "4 - Test\n"
-		   "5 - Console commands\b"
+		   "5 - Console commands\n"
 		   "6 - Pause\n\n"
 		   "Exit - Quit\n");
 	printf("Enter your choise: ");
