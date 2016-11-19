@@ -12,7 +12,7 @@ int self_train2()
 	printf("Please select drill number:\n");
 	printf("3 - Absolute value\n");
 	printf("4 - Devision\n");
-	printf("5 - Natural numbers\n");
+	printf("5 - Range of numbers\n");
 	printf("6 - Modulu 3\n");
 	printf("7 - 3th power\n");
 	printf("8 - an series\n\n");
@@ -118,6 +118,41 @@ int st2_d4()
 ///////////////////////////////////////////////////////////////////////////////////////////
 int st2_d5()
 {
+	//drill 5
+	int num[2],rng;
+	printf("Enter two positive integers\n"
+		"Num1: ");
+	scanf("%d", &num[1]);
+	printf("Num2: ");
+	scanf("%d", &num[2]);
+	if (num[1] < 0||num[2]<0)
+	{
+		printf("You have entered negative number, tru again\n");
+		system("pause");
+		printf("\n");
+		return st2_d5();
+	}
+
+	if (num[1] == num[2])
+		printf("The range between %d to %d is 0\n", num[1], num[2]);
+		printf("\n");
+		system("pause");
+		return self_train2();
+
+	if (num[2] > num[1])
+	{
+		num[2] += num[1];
+		num[1] = num[2] - num[1];
+		num[2] = num[2] - num[1];
+	}
+	
+	printf("The range between %d to %d is:\n", num[1], num[2]);
+
+	for (rng = (num[1] - num[2]-1);rng > 0;rng--)
+		printf("%d\n", num[2]+rng);
+	
+	printf("\n");
+	system("pause");
 	return self_train2();
 }
 
