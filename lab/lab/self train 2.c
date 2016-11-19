@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
 
 int self_train2()
 {
@@ -174,6 +175,20 @@ int st2_d6()
 ///////////////////////////////////////////////////////////////////////////////////////////
 int st2_d7()
 {
+	//drill 7
+	int main_num, num[3];
+	printf("Numbers between 1-500 that the sum of the digits in power of 3 is equal the the original number:\n");
+	for (main_num = 1; main_num < 501; main_num++)
+	{
+		num[1] = main_num % 10; //1
+		num[2] = (main_num % 100) / 10; // 10
+		num[3] = (main_num % 1000) / 100; // 100
+		if ((pow(num[1], 3) + pow(num[2], 3) + pow(num[3], 3)) == main_num)
+			printf("%d\n", main_num);
+	}
+
+	printf("\n");
+	system("pause");
 	return self_train2();
 }
 
