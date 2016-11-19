@@ -159,6 +159,15 @@ int st2_d5()
 ///////////////////////////////////////////////////////////////////////////////////////////
 int st2_d6()
 {
+	//drill 6
+	int num;
+	printf("Numbers between 1-100 that devides by 3 without rest:\n");
+	for (num = 1;num < 100;num++)
+		if (!(num % 3))
+			printf("%d\n", num);
+
+	printf("\n");
+	system("pause");
 	return self_train2();
 }
 
