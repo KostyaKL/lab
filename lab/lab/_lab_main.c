@@ -105,7 +105,9 @@ int ascii()
 
 	while (ch1 < 126)
 	{
-		printf("%c - %d			%c - %d			%c - %d			%c - %d			%c - %d			%c - %d\n", ch1,ch1,ch2,ch2,ch3,ch3,ch4,ch4,ch5,ch5,ch6,ch6);
+		printf("%c - %d			%c - %d			"
+			   "%c - %d			%c - %d			"
+			   "%c - %d			%c - %d\n", ch1,ch1,ch2,ch2,ch3,ch3,ch4,ch4,ch5,ch5,ch6,ch6);
 		ch1 += 6;
 		ch2 += 6;
 		ch3 += 6;
