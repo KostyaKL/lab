@@ -195,5 +195,20 @@ int st2_d7()
 ///////////////////////////////////////////////////////////////////////////////////////////
 int st2_d8()
 {
+	//drill 8
+	int n=-4,N;
+	
+	
+	printf("an = { -n(-1%c) } :\n", n);
+	for (n = 1;n < 10;n++)
+	{
+		N = (-n*pow(-1, n));
+		printf("%d , ", N);
+	}
+	N = (-n*pow(-1, n));
+	printf("%d\n", N);
+
+	printf("\n");
+	system("pause");
 	return self_train2();
 }
