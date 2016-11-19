@@ -75,9 +75,16 @@ int self_train2()
 ///////////////////////////////////////////////////////////////////////////////////////////
 int st2_d3()
 {
-	char ch1[100];
-	scanf("%s", &ch1);
-	printf("\n\n%s\n\n", ch1);
+	//drill 3
+	double num;
+	printf("Enter your number: ");
+	scanf("%lf", &num);
+	if (num < 0)
+	{
+		num *= -1;
+	}
+	printf("The absolute value of your number is: %0.2lf\n\n", num);
+
 	system("pause");
 	return self_train2();
 }
