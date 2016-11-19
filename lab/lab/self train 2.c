@@ -17,6 +17,7 @@ int self_train2()
 	printf("7 - 3th power\n");
 	printf("8 - an series\n\n");
 	printf("Back - Return to main\n\n");
+	printf("Exit - Quit\n\n");
 	printf("Enter your choise: ");
 	scanf("%s", drill_num);
 	printf("\n");
@@ -63,6 +64,11 @@ int self_train2()
 		return main();
 	}
 
+	else if (strcmp(drill_num, "quit") == 0)
+	{
+		exit(0);
+	}
+
 	else
 	{
 		printf("You have enterd invalid choise\n\n");
@@ -92,6 +98,20 @@ int st2_d3()
 ///////////////////////////////////////////////////////////////////////////////////////////
 int st2_d4()
 {
+	//drill 4
+	
+	int num[2];
+	printf("Enter two integers\n"
+		   "Num1: ");
+	scanf("%d", &num[1]);
+	printf("Num2: ");
+	scanf("%d", &num[2]);
+	if (!(num[1] % num[2]))
+		printf("%d/%d is devided without rest\n\n", num[1], num[2]);
+	else
+		printf("%d/%d is devide with rest\n\n", num[1], num[2]);
+
+	system("pause");
 	return self_train2();
 }
 
