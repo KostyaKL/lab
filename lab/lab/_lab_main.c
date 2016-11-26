@@ -11,7 +11,8 @@ int main()
 	printf("______________________________________\n");
 	printf("Choose which lab you want to display:\n");
 	printf("1.1 - Lab1\n"
-		   "1.2 - Lab2\n\n"
+		   "1.2 - Lab2\n"
+		   "1.3 - Lab3-4\n\n"
 		   "2.1 - Self Train 1\n"
 		   "2.2 - Self Train 2\n\n"
 		   "3 - Ascii\n"
@@ -35,6 +36,12 @@ int main()
 	{
 		printf("\n");
 		lab2();
+	}
+
+	else if (strcmp(lab_name, "1.3") == 0)
+	{
+		printf("\n");
+		lab3_4();
 	}
 
 	else if (strcmp(lab_name, "2.1") == 0)
