@@ -26,7 +26,9 @@ int lab3_4()
 		"6 - Fibonacci\n"
 		"7 - Binary to Decimal\n\n"
 		"Back - Return to main\n"
-		"Quit - Exit\n");
+		"Quit - Exit\n\n"
+		"Enter your choise: ");
+	scanf("%s", &drill_num);
 
 	if (strcmp(drill_num, "1") == 0)
 	{

@@ -30,7 +30,7 @@
     <ClCompile Include="self train 2.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="lab3-4.cpp">
+    <ClCompile Include="lab3-4.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
