@@ -144,6 +144,36 @@ int lab3_4_ex_2()
 
 int lab3_4_ex_3()
 {
+	int num[50], init = 0, sum = 0, diff, i;
+	printf("Enter a series of natureal numbers, when finished enter '-1':\n");
+	while (init != -1)
+	{
+		printf("Enter a N number: ");
+		scanf("%d", &init);
+		if (init <= 0 && init != -1)
+		{
+			printf("You have entered a negative number, try again\n\n");
+		}
+		else if (init == -1)
+			break;
+		else
+		{
+			num[sum] = init;
+			sum++;
+		}
+	}
+
+	for (i = 0;i < sum-1;i++)
+	{
+		diff = num[i + 1] - num[i];
+		if (diff <= 0)
+		{
+			printf("The series trend is NOT up\n\n");
+			system("pause");
+			return lab3_4();
+		}
+	}
+	printf("The series trend is UP\n\n");
 
 	printf("\n");
 	system("pause");
