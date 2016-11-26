@@ -117,6 +117,23 @@ int lab3_4_ex_1()
 
 int lab3_4_ex_2()
 {
+	int  init=0, sum=0;
+	printf("Enter a series of natureal numbers, when finished enter '-1':\n");
+	while (init != -1)
+	{
+		printf("Enter a N number: ");
+		scanf("%d", &init);
+		if (init <= 0 && init != -1)
+		{
+			printf("You have entered a negative number, try again\n\n");
+		}
+		else if (init == -1)
+			break;
+		else
+			sum++;
+	}
+
+	printf("The amount of numbers entered is %d\n\n", sum);
 
 	printf("\n");
 	system("pause");
