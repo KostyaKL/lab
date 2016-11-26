@@ -97,6 +97,16 @@ int lab3_4()
 
 int lab3_4_ex_1()
 {
+	int num1=1,md, i;
+	for (i = 1;i < 100;i++)
+	{
+		md = num1 % 7;
+		if (!md)
+		{
+			printf("%d, ", num1);
+		}
+		num1++;
+	}
 
 	printf("\n");
 	system("pause");
