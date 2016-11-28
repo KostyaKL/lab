@@ -1,13 +1,20 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
-#include <math.h>
+
+int op1();
+int op2();
+int op3();
+int op4(coutn);
+int op5();
+int other();
 
 int hagasha_1()
 {
-	int num_sel, on = 1, count=1;
-	while (on)
+	int num_sel, on = 1, count=0;
+
+	do
 	{
+		count++;
 		system("cls");
 		printf("Yossi's Telemarketing costumer service!\n"
 			"__________________________________________\n"
@@ -16,27 +23,27 @@ int hagasha_1()
 		switch (num_sel)
 		{
 		case 1:
-			op1();
+			on=op1();
 			break;
 		case 2:
-			op2();
+			on=op2();
 			break;
 		case 3:
-			op3();
+			on=op3();
 			break;
 		case 4:
-			op4(count);
+			on=op4(count);
 			break;
 		case 5:
-			op5();
+			on=op5();
 			break;
 		default:
-			other();
+			on=other();
 		}
-		count++;
-	}
-		return main();
-	}
+	} while (on);
+	
+	exit(1);
+}
 
 int op1()
 {
@@ -62,7 +69,7 @@ int op3()
 	{
 		printf("Canceled\n\n");
 		system("pause");
-		exit(1);
+		return 0;
 	}
 	return 1;
 
@@ -78,7 +85,7 @@ int op4(int count)
 
 int op5()
 {
-	exit(1);
+	return 0;
 }
 
 int other()
