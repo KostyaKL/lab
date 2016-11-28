@@ -184,6 +184,40 @@ int lab3_4_ex_3()
 
 int lab3_4_ex_4()
 {
+	int num[50], init = 0, sum = 0, user_sum=1, diff, i;
+	printf("Enter the amount of members in the series (must be N number): ");
+	scanf("%d", &user_sum);
+	if (user_sum <= 0)
+	{
+		printf("You have enterd a number smaller than 1, try again\n\n");
+		return lab3_4_ex_4();
+	}
+
+	printf("Enter a series of natureal numbers, when finished enter '-1':\n");
+	while (sum<user_sum)
+	{
+		printf("Enter a N number: ");
+		scanf("%d", &init);
+		if (init <= 0)
+			printf("You have entered a negative number, try again\n\n");
+		else
+		{
+			num[sum] = init;
+			sum++;
+		}
+	}
+
+	for (i = 0;i < sum-1;i++)
+	{
+		diff = num[i + 1] - num[i];
+		if (diff <= 0)
+		{
+			printf("The series trend is NOT up\n\n");
+			system("pause");
+			return lab3_4();
+		}
+	}
+	printf("The series trend is UP\n\n");
 
 	printf("\n");
 	system("pause");
