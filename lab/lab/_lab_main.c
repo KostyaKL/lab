@@ -15,10 +15,11 @@ int main()
 		   "1.3 - Lab3-4\n\n"
 		   "2.1 - Self Train 1\n"
 		   "2.2 - Self Train 2\n\n"
-		   "3 - Ascii\n"
-		   "4 - Test\n"
-		   "5 - Console commands\n"
-		   "6 - Pause\n\n"
+		   "3.1 - Hagasha 1\n\n"
+		   "4 - Ascii\n"
+		   "5 - Test\n"
+		   "6 - Console commands\n"
+		   "7 - Pause\n\n"
 		   "Exit - Quit\n");
 	printf("Enter your choise: ");
 
@@ -56,31 +57,37 @@ int main()
 		self_train2();
 	}
 
+	else if (strcmp(lab_name, "3.1") == 0)
+	{
+		printf("\n");
+		hagasha_1();
+	}
+
 	else if (strcmp(lab_name, "quit") == 0)
 	{
 		exit(0);
 	}
 
-	else if (strcmp(lab_name, "3") == 0)
+	else if (strcmp(lab_name, "4") == 0)
 	{
 		printf("\n");
 		ascii();
 	}
 
-	else if (strcmp(lab_name, "4") == 0)
+	else if (strcmp(lab_name, "5") == 0)
 	{
 		printf("\n");
 		testim();
 	}
 
-	else if (strcmp(lab_name, "5") == 0)
+	else if (strcmp(lab_name, "6") == 0)
 	{
 		printf("\n");
 		printf("Enter console command: ");
 		cmd();
 	}
 
-	else if (strcmp(lab_name, "6") == 0)
+	else if (strcmp(lab_name, "7") == 0)
 	{
 		printf("\n");
 		system("pause");
