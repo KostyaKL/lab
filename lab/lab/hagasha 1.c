@@ -6,7 +6,7 @@ Student 2: Kostya Lokshin ID:310765821	*/
 #include <stdio.h>
 #include <stdlib.h>
 
-void main()
+int hagasha_1()
 {
 	int num_sel, on = 1, count=0;
 		//num_sel - user coise
