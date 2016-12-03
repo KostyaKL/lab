@@ -1,6 +1,6 @@
 /*
 Assigned by:
-Student 1: Melinda Levi ID:123456789
+Student 1: Melinda Levi ID:201310356
 Student 2: Kostya Lokshin ID:310765821	*/
 
 #include <stdio.h>
