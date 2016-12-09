@@ -11,6 +11,7 @@ int lab3_4_ex_4();
 int lab3_4_ex_5();
 int lab3_4_ex_6();
 int lab3_4_ex_7();
+int biger(int,int);
 
 int lab3_4()
 {
@@ -193,7 +194,7 @@ int lab3_4_ex_4()
 		return lab3_4_ex_4();
 	}
 
-	printf("Enter a series of natureal numbers, when finished enter '-1':\n");
+	printf("Enter a series of natureal numbers:\n");
 	while (sum<user_sum)
 	{
 		printf("Enter a N number: ");
@@ -228,6 +229,38 @@ int lab3_4_ex_4()
 
 int lab3_4_ex_5()
 {
+	int num[50], init = 0, sum = 0, big1 = 0, big2 = 0, i,temp;
+	printf("Enter a series of natureal numbers, when finished enter '-1':\n");
+	while (init != -1)
+	{
+		printf("Enter a N number: ");
+		scanf("%d", &init);
+		if (init <= 0 && init != -1)
+		{
+			printf("You have entered a negative number, try again\n\n");
+		}
+		else if (init == -1)
+			break;
+		else
+		{
+			num[sum] = init;
+			sum++;
+		}
+	}
+
+	for (i = 0;i < sum;i++)
+		big1 = biger(big1, num[i]);
+
+	for (i = 0;i < sum;i++)
+	{
+		temp=biger(big2, num[i]);
+		if (temp == big1)
+			temp = big2;
+		big2 = temp;
+	}
+
+	printf("the biggest number you entered is %d\n", big1);
+	printf("the second biggest number you entered is %d\n\n", big2);
 
 	printf("\n");
 	system("pause");
@@ -238,6 +271,22 @@ int lab3_4_ex_5()
 
 int lab3_4_ex_6()
 {
+	int num, prev=1,cur=1, i;
+	printf("enter a N number:\n");
+	do
+	{
+		scanf("%d", &num);
+		if (num <= 0 && num != -1)
+			printf("You have entered a negative number, try again\n\n");
+	} while (num <= 0 && num != -1);
+
+	for (i = 0;i < num;i++)
+	{
+		cur = prev + cur;
+		prev = cur;
+	}
+
+	printf("the n number in fibonachhi is %d\n\n", cur);
 
 	printf("\n");
 	system("pause");
@@ -252,4 +301,13 @@ int lab3_4_ex_7()
 	printf("\n");
 	system("pause");
 	return lab3_4();
+}
+
+////////////////////////////////////////////////////////////
+
+int biger(int a, int b)
+{
+	if (a > b)
+		return a;
+	return b;
 }
