@@ -16,7 +16,7 @@ int main()
 		   "1.5 - Lab5\n\n"
 		   "2.1 - Self Train 1\n"
 		   "2.2 - Self Train 2\n"
-		   "2.2 - Self Train 3\n\n"
+		   "2.3 - Self Train 3\n\n"
 		   "3.1 - Hagasha 1\n\n"
 		   "4 - Ascii\n"
 		   "5 - Test\n"

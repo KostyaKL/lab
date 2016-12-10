@@ -8,6 +8,8 @@ int st3_ex1();
 int st3_ex2();
 int st3_ex3();
 int st3_ex4();
+int Nput(int);
+int pser();
 
 int self_train3()
 {
@@ -27,25 +29,25 @@ int self_train3()
 	if (strcmp(drill_num, "1") == 0)
 	{
 		printf("\n");
-		lab3_4_ex_1();
+		st3_ex1();
 	}
 
 	if (strcmp(drill_num, "2") == 0)
 	{
 		printf("\n");
-		lab3_4_ex_2();
+		st3_ex2();
 	}
 
 	if (strcmp(drill_num, "3") == 0)
 	{
 		printf("\n");
-		lab3_4_ex_3();
+		st3_ex3();
 	}
 
 	if (strcmp(drill_num, "4") == 0)
 	{
 		printf("\n");
-		lab3_4_ex_4();
+		st3_ex4();
 	}
 
 	if (strcmp(drill_num, "back") == 0)
@@ -73,7 +75,12 @@ int self_train3()
 
 int st3_ex1()
 {
-
+	int flag;
+	flag = pser();
+	if (flag)
+		printf("1\n\n");
+	else
+		printf("0\n\n");
 
 	printf("\n");
 	system("pause");
@@ -111,5 +118,42 @@ int st3_ex4()
 	printf("\n");
 	system("pause");
 	return self_train3();
+}
+
+///////////////////////////////
+int Nput(int num)
+{
+	printf("Enter a positive number: ");
+	do
+	{
+		scanf("%d", &num);
+		if (num < 0)
+			printf("You have entered negative number, Try again\n\n");
+	} while (num < 0);
+
+	return num;
+ }
+
+//////////////////////////////////////////////
+
+int pser()
+{
+	int num[4], i, diff[3], flag;
+	for (i = 0;i < 4;i++)
+	{
+		num[i] = Nput(num[i]);
+	}
+
+	for (i = 0;i < 3;i++)
+	{
+		diff[i] = num[i + 1] - num[i];
+	}
+	for (i = 0;i < 2;i++)
+	{
+		flag = diff[i + 1] - diff[i];
+		if (flag)
+			return 0;
+	}
+	return 1;
 }
 
