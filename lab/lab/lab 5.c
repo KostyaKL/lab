@@ -11,6 +11,7 @@ int lab5_ex_5();
 int lab5_ex_6();
 int reverse(int);
 int prime(int);
+int dig_sum(int);
 
 int lab5()
 {
@@ -177,6 +178,21 @@ int lab5_ex_5()
 
 int lab5_ex_6()
 {
+	int num, i, sum;
+	printf("Enter a positive number: ");
+	do
+	{
+		scanf("%d", &num);
+		if (num < 0)
+			printf("You have entered negative number, Try again\n\n");
+	} while (num < 0);
+	sum = num;
+	do
+	{
+		sum = dig_sum(sum);
+	} while (dig_count(sum) > 1);
+	
+	printf("The reduction of %d is %d\n\n", num, sum);
 
 	printf("\n");
 	system("pause");
@@ -225,4 +241,21 @@ int prime(int num)
 	}
 
 	return 0;
+}
+
+////////////////////////////////////////////////
+
+int dig_sum(int num)
+{
+	int sum=0,digits,cur;
+	unsigned long long dev = 10;
+	digits = dig_count(num);
+	for (;digits > 0;digits--)
+	{
+		cur = (num%dev) / (dev / 10);
+		sum += cur;
+		dev *= 10;
+	}
+
+	return sum;
 }
