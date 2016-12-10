@@ -36,5 +36,11 @@
     <ClCompile Include="hagasha 1.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="lab 5.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="self trrain 3.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

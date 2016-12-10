@@ -12,9 +12,11 @@ int main()
 	printf("Choose which lab you want to display:\n");
 	printf("1.1 - Lab1\n"
 		   "1.2 - Lab2\n"
-		   "1.3 - Lab3-4\n\n"
+		   "1.3 - Lab3-4\n"
+		   "1.5 - Lab5\n\n"
 		   "2.1 - Self Train 1\n"
-		   "2.2 - Self Train 2\n\n"
+		   "2.2 - Self Train 2\n"
+		   "2.2 - Self Train 3\n\n"
 		   "3.1 - Hagasha 1\n\n"
 		   "4 - Ascii\n"
 		   "5 - Test\n"
@@ -45,6 +47,12 @@ int main()
 		lab3_4();
 	}
 
+	else if (strcmp(lab_name, "1.5") == 0)
+	{
+		printf("\n");
+		lab5();
+	}
+
 	else if (strcmp(lab_name, "2.1") == 0)
 	{
 		printf("\n");
@@ -55,6 +63,12 @@ int main()
 	{
 		printf("\n");
 		self_train2();
+	}
+
+	else if (strcmp(lab_name, "2.3") == 0)
+	{
+		printf("\n");
+		self_train3();
 	}
 
 	else if (strcmp(lab_name, "3.1") == 0)

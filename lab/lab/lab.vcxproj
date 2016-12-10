@@ -20,11 +20,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="hagasha 1.c" />
+    <ClCompile Include="lab 5.c" />
     <ClCompile Include="lab1.c" />
     <ClCompile Include="lab2.c" />
     <ClCompile Include="lab3-4.c" />
     <ClCompile Include="self train 1.c" />
     <ClCompile Include="self train 2.c" />
+    <ClCompile Include="self trrain 3.c" />
     <ClCompile Include="_lab_main.c" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
