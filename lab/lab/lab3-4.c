@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
+
 
 
 
@@ -12,6 +14,9 @@ int lab3_4_ex_5();
 int lab3_4_ex_6();
 int lab3_4_ex_7();
 int biger(int,int);
+int dig_count(int);
+int b_check(int);
+int b2d(int);
 
 
 int lab3_4()
@@ -299,7 +304,18 @@ int lab3_4_ex_6()
 
 int lab3_4_ex_7()
 {
+	int b_num, d_num, check;
+	printf("Enter Binary number: ");
+	do
+	{
+		scanf("%d", &b_num);
+		check = b_check(b_num);
+		if (!check)
+			printf("you have entered non bunary number, try again\n\n");
+	} while (!check);
 
+	d_num = b2d(b_num);
+	printf("%d is equal %d\n\n", b_num,d_num);
 	printf("\n");
 	system("pause");
 	return lab3_4();
@@ -314,3 +330,57 @@ int biger(int a, int b)
 	return b;
 }
 
+////////////////////////////////////////////////////////////
+
+int dig_count(num)
+{
+	int digi=0;
+
+	while (num)
+	{
+		num = num/10;
+		digi++;
+	}
+	
+
+	return digi;
+}
+
+////////////////////////////////////
+
+int b_check(int num)
+{
+	int digits,i,check;
+	unsigned long long dev = 10;
+
+	digits = dig_count(num);
+	
+
+	for (i = 0;i < digits;i++)
+	{
+		check = (num%dev)/(dev/10);
+		dev *= 10;
+		if (check != 1 && check != 0)
+			return 0;
+	}
+	return 1;
+}
+
+////////////////////////////////////////////////////////////////////////////
+
+int b2d(int num)
+{
+	int dec=0, digits,i,cur;
+	unsigned long long dev = 10;
+
+	digits = dig_count(num);
+	for (i = 0;i < digits;i++)
+	{
+		cur = (num%dev) / (dev / 10);
+		dec = dec + (pow(2,i))*cur;
+		dev *= 10;
+
+	}
+
+	return dec;
+}
