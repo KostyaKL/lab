@@ -9,6 +9,7 @@ int lab5_ex_3();
 int lab5_ex_4();
 int lab5_ex_5();
 int lab5_ex_6();
+int reverse(int);
 
 int lab5()
 {
@@ -109,6 +110,17 @@ int lab5_ex_1()
 
 int lab5_ex_2()
 {
+	int num, rev;
+	printf("Enter a positive number: ");
+	do
+	{
+		scanf("%d", &num);
+		if (num < 0)
+			printf("You have entered negative number, Try again\n\n");
+	} while (num < 0);
+
+	rev = reverse(num);
+	printf("the reverse number is %d\n\n", rev);
 
 	printf("\n");
 	system("pause");
@@ -153,4 +165,28 @@ int lab5_ex_6()
 	printf("\n");
 	system("pause");
 	return lab5();
+}
+
+///////////////////////////////////////////////////////////////////
+
+int reverse(int num)
+{
+	int digits, rev=0, i, mult=1, cur;
+	unsigned long long dev = 10;
+
+	digits = dig_count(num);
+
+	for (i = 1;i < digits;i++)
+		mult *= 10;
+
+	for (i = 0;i < digits;i++)
+	{
+		cur = (num%dev) / (dev / 10);
+		rev = rev + cur*mult;
+		dev *= 10;
+		mult /= 10;
+	}
+
+	return rev;
+
 }
