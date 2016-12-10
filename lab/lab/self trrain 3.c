@@ -4,19 +4,18 @@
 #include <math.h>
 
 
-int self_train5()
+int self_train3()
 {
-	char drill_num[5];
+	char drill_num[6];
 	system("cls");
-	printf("Welcome to lab 3-4 Page!\n"
+	printf("Welcome to Self Train 3 Page!\n"
 		"_____________________________\n"
 		"1 - 7 Modulu\n"
 		"2 - Number if Numbers\n"
 		"3 - Trend of Numbers\n"
 		"4 - Trend of Numbers 2\n"
 		"5 - Supremum\n"
-		"6 - Fibonacci\n"
-		"7 - Binary to Decimal\n\n"
+		"6 - Fibonacci\n\n"
 		"Back - Return to main\n"
 		"Quit - Exit\n\n"
 		"Enter your choise: ");
@@ -58,12 +57,6 @@ int self_train5()
 		lab3_4_ex_6();
 	}
 
-	if (strcmp(drill_num, "7") == 0)
-	{
-		printf("\n");
-		lab3_4_ex_7();
-	}
-
 	if (strcmp(drill_num, "back") == 0)
 	{
 		printf("\n");
@@ -79,8 +72,10 @@ int self_train5()
 	{
 		printf("You have enterd invalid choise\n\n");
 		system("pause");
-		return lab3_4();
+		return self_train3();
 	}
 	return main();
 
 }
+
+///////////////////////////////////////////////////////////////////////////
