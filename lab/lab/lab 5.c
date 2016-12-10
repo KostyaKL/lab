@@ -10,6 +10,7 @@ int lab5_ex_4();
 int lab5_ex_5();
 int lab5_ex_6();
 int reverse(int);
+int prime(int);
 
 int lab5()
 {
@@ -141,6 +142,21 @@ int lab5_ex_3()
 
 int lab5_ex_4()
 {
+	int num, i,flag;
+	printf("Enter a positive number: ");
+	do
+	{
+		scanf("%d", &num);
+		if (num <= 0)
+			printf("You have entered negative number, Try again\n\n");
+	} while (num <= 0);
+
+	flag = prime(num);
+
+	if (flag)
+		printf("The number is Prime\n\n");
+	else 
+		printf("The number is NOT Prime\n\n");
 
 	printf("\n");
 	system("pause");
@@ -189,4 +205,24 @@ int reverse(int num)
 
 	return rev;
 
+}
+
+///////////////////////////////////////////////////
+
+int prime(int num)
+{
+	int i, flag, check;
+	for (i = 2;i <= num;i++)
+	{
+		flag = num%i;
+		if (!flag)
+		{
+			if (i == num)
+				return 1;
+			else
+				return 0;
+		}
+	}
+
+	return 0;
 }
