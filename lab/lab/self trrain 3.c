@@ -4,18 +4,21 @@
 #include <math.h>
 
 
+int st3_ex1();
+int st3_ex2();
+int st3_ex3();
+int st3_ex4();
+
 int self_train3()
 {
 	char drill_num[6];
 	system("cls");
 	printf("Welcome to Self Train 3 Page!\n"
 		"_____________________________\n"
-		"1 - Count digits\n"
-		"2 - Revers digits\n"
-		"3 - Revers Digits Effitiant\n"
-		"4 - Prime Number\n"
-		"5 - Longest Flush\n"
-		"6 - Reduction\n\n"
+		"1 - Plus Series\n"
+		"2 - Modulu\n"
+		"3 - Series Trend\n"
+		"4 - Odd/Even Arrengment\n\n"
 		"Back - Return to main\n"
 		"Quit - Exit\n\n"
 		"Enter your choise: ");
@@ -45,18 +48,6 @@ int self_train3()
 		lab3_4_ex_4();
 	}
 
-	if (strcmp(drill_num, "5") == 0)
-	{
-		printf("\n");
-		lab3_4_ex_5();
-	}
-
-	if (strcmp(drill_num, "6") == 0)
-	{
-		printf("\n");
-		lab3_4_ex_6();
-	}
-
 	if (strcmp(drill_num, "back") == 0)
 	{
 		printf("\n");
@@ -79,3 +70,46 @@ int self_train3()
 }
 
 ///////////////////////////////////////////////////////////////////////////
+
+int st3_ex1()
+{
+
+
+	printf("\n");
+	system("pause");
+	return self_train3();
+}
+
+///////////////////////////////////////////////////////////////////////////
+
+int st3_ex2()
+{
+
+
+	printf("\n");
+	system("pause");
+	return self_train3();
+}
+
+///////////////////////////////////////////////////////////////////////////
+
+int st3_ex3()
+{
+
+
+	printf("\n");
+	system("pause");
+	return self_train3();
+}
+
+///////////////////////////////////////////////////////////////////////////
+
+int st3_ex4()
+{
+
+
+	printf("\n");
+	system("pause");
+	return self_train3();
+}
+
