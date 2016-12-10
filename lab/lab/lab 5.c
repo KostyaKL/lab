@@ -16,12 +16,12 @@ int lab5()
 	system("cls");
 	printf("Welcome to lab 5 Page!\n"
 		"_____________________________\n"
-		"1 - 7 Modulu\n"
-		"2 - Number if Numbers\n"
-		"3 - Trend of Numbers\n"
-		"4 - Trend of Numbers 2\n"
-		"5 - Supremum\n"
-		"6 - Fibonacci\n\n"
+		"1 - Count digits\n"
+		"2 - Revers digits\n"
+		"3 - Revers Digits Effitiant\n"
+		"4 - Prime Number\n"
+		"5 - Longest Flush\n"
+		"6 - Reduction\n\n"
 		"Back - Return to main\n"
 		"Quit - Exit\n\n"
 		"Enter your choise: ");
@@ -88,7 +88,18 @@ int lab5()
 
 int lab5_ex_1()
 {
+	int num, sum;
+	printf("Enter a positive number: ");
+	do
+	{
+		scanf("%d", &num);
+		if (num < 0)
+			printf("You have entered negative number, Try again\n\n");
+	} while (num < 0);
 
+	sum = dig_count(num);
+	printf("Your number consist of %d digit\n\n", sum);
+	
 	printf("\n");
 	system("pause");
 	return lab5();

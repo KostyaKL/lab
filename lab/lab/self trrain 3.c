@@ -10,12 +10,12 @@ int self_train3()
 	system("cls");
 	printf("Welcome to Self Train 3 Page!\n"
 		"_____________________________\n"
-		"1 - 7 Modulu\n"
-		"2 - Number if Numbers\n"
-		"3 - Trend of Numbers\n"
-		"4 - Trend of Numbers 2\n"
-		"5 - Supremum\n"
-		"6 - Fibonacci\n\n"
+		"1 - Count digits\n"
+		"2 - Revers digits\n"
+		"3 - Revers Digits Effitiant\n"
+		"4 - Prime Number\n"
+		"5 - Longest Flush\n"
+		"6 - Reduction\n\n"
 		"Back - Return to main\n"
 		"Quit - Exit\n\n"
 		"Enter your choise: ");
