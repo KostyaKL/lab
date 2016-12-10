@@ -13,6 +13,7 @@ int lab3_4_ex_6();
 int lab3_4_ex_7();
 int biger(int,int);
 
+
 int lab3_4()
 {
 	char drill_num[5];
@@ -271,19 +272,20 @@ int lab3_4_ex_5()
 
 int lab3_4_ex_6()
 {
-	int num, prev=1,cur=1, i;
+	int num, i, cur=1, f1=1,f2=1;
 	printf("enter a N number:\n");
 	do
 	{
 		scanf("%d", &num);
-		if (num <= 0 && num != -1)
+		if (num <= 0)
 			printf("You have entered a negative number, try again\n\n");
-	} while (num <= 0 && num != -1);
+	} while (num <= 0);
 
-	for (i = 0;i < num;i++)
+	for (i = 2;i < num;i++)
 	{
-		cur = prev + cur;
-		prev = cur;
+		cur = f1 + f2;
+		f1 = f2;
+		f2 = cur;
 	}
 
 	printf("the n number in fibonachhi is %d\n\n", cur);
@@ -311,3 +313,4 @@ int biger(int a, int b)
 		return a;
 	return b;
 }
+
