@@ -77,7 +77,7 @@ int lab7()
 	{
 		printf("You have enterd invalid choise\n\n");
 		system("pause");
-		return lab6();
+		return lab7();
 	}
 	return main();
 

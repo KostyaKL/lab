@@ -23,6 +23,7 @@ int main()
 		   "4 - Ascii\n"
 		   "5 - Test\n"
 		   "6 - Console commands\n"
+		   "8 - Misc\n"
 		   "7 - Pause\n\n"
 		   "Exit - Quit\n");
 	printf("Enter your choise: ");
@@ -116,6 +117,12 @@ int main()
 	}
 
 	else if (strcmp(lab_name, "7") == 0)
+	{
+		printf("\n");
+		misc();
+	}
+
+	else if (strcmp(lab_name, "8") == 0)
 	{
 		printf("\n");
 		system("pause");
