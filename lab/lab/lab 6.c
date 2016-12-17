@@ -12,6 +12,7 @@ int lab6_ex_6();
 int dsum(int);
 int odde(int);
 int printup(int,int);
+int printdwn(int);
 
 
 int lab6()
@@ -133,6 +134,9 @@ int lab6_ex_3()
 
 int lab6_ex_4()
 {
+	int num = 0;
+	num = Nput(num);
+	printdwn(num);
 
 	printf("\n");
 	system("pause");
@@ -189,3 +193,12 @@ int printup(int num,int pn)
 	return printup(num ,pn + 1);
 }
 
+//////////////////////////////////////////////////////////////////
+
+int printdwn(int num)
+{
+	if (!num)
+		return 0;
+	printf("%d\n", num);
+	return printdwn(num-1);
+}
