@@ -11,6 +11,7 @@ int lab6_ex_5();
 int lab6_ex_6();
 int dsum(int);
 int odde(int);
+int printup(int,int);
 
 
 int lab6()
@@ -119,6 +120,9 @@ int lab6_ex_2()
 
 int lab6_ex_3()
 {
+	int num = 0;
+	num = Nput(num);
+	printup(num, 1);
 
 	printf("\n");
 	system("pause");
@@ -173,5 +177,15 @@ int odde(int num)
 	else if (!num)
 		return 0;
 	return odde(num / 10);
+}
+
+//////////////////////////////////////////////////////////////////
+
+int printup(int num,int pn)
+{
+	if (pn==num+1)
+		return 0;
+	printf("%d\n", pn);
+	return printup(num ,pn + 1);
 }
 
