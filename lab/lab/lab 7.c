@@ -11,6 +11,7 @@ int lab7_ex_5();
 int bige(int, int);
 int smale(int, int);
 int smk(int, int,int,int);
+int pw(int, int);
 
 
 
@@ -128,7 +129,13 @@ int lab7_ex_3()
 
 int lab7_ex_4()
 {
-	
+	int base = 0, expo = 0, result = 0;
+	printf("Enter base:\n");
+	scanf("%d", &base);
+	printf("Enter Exponent:\n");
+	expo = Nput(expo);
+	result = pw(base, expo);
+	printf("%d^%d=%d\n", base, expo, result);
 
 	printf("\n");
 	system("pause");
@@ -188,5 +195,18 @@ int smk(int n, int k,int num, int sm)
 		else if (num >= k)
 			return smk(n - 1, k, num, sm);
 	}
+	}
 
+//////////////////////////////////////////////////////////////////
+
+int pw(int x, int n)
+{
+	if (!n)
+		return 1;
+	else if (n == 1)
+		return x;
+	else if (!(n % 2))
+		return pw(x, n / 2)*pw(x, n / 2);
+	else if (n%2)
+		return x*pw(x, n / 2)*pw(x, n / 2);		
 }
