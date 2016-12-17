@@ -9,13 +9,14 @@ int lab6_ex_3();
 int lab6_ex_4();
 int lab6_ex_5();
 int lab6_ex_6();
+int dsum(int);
 
 
 int lab6()
 {
 	char drill_num[5];
 	system("cls");
-	printf("Welcome to lab 5 Page!\n"
+	printf("Welcome to lab 6 Page!\n"
 		"_____________________________\n"
 		"1 - Count digits - Recursion\n"
 		"2 - Odd/Even - Recursion\n"
@@ -89,6 +90,10 @@ int lab6()
 
 int lab6_ex_1()
 {
+	int num=0,digits=0;
+	num = Nput(num);
+	digits = dsum(num);
+	printf("The number of digits in your number is %d", digits);
 	
 	printf("\n");
 	system("pause");
@@ -146,4 +151,11 @@ int lab6_ex_6()
 }
 
 //////////////////////////////////////////////////////////////////
+
+int dsum(int num)
+{
+	if (!num)
+		return 0;
+	return 1+ dsum(num/10);
+}
 
