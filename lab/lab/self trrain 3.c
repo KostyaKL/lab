@@ -127,9 +127,9 @@ int Nput(int num)
 	do
 	{
 		scanf("%d", &num);
-		if (num < 0)
+		if (num < -1)
 			printf("You have entered negative number, Try again\n\n");
-	} while (num < 0);
+	} while (num < -1);
 
 	return num;
  }

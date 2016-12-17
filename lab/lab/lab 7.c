@@ -8,6 +8,9 @@ int lab7_ex_2();
 int lab7_ex_3();
 int lab7_ex_4();
 int lab7_ex_5();
+int bige(int, int);
+int smale(int, int);
+int smk(int, int,int,int);
 
 
 
@@ -82,7 +85,9 @@ int lab7()
 
 int lab7_ex_1()
 {
-	
+	int big = 0;
+	big=bige(0,0);
+	printf("The bigest number is %d", big);
 
 	printf("\n");
 	system("pause");
@@ -93,7 +98,9 @@ int lab7_ex_1()
 
 int lab7_ex_2()
 {
-	
+	int small = 0;
+	small = smale(0, 9999999999);
+	printf("The smallest number is %d", small);	
 
 	printf("\n");
 	system("pause");
@@ -104,7 +111,13 @@ int lab7_ex_2()
 
 int lab7_ex_3()
 {
-	
+	int n = 0, k = 0, smak=0;
+	printf("Enter the number of items N:\n");
+	n = Nput(n);
+	printf("\nEnter The treshold K:\n");
+	k = Nput(k);
+	smak = smk(n, k,0,0);
+	printf("\nThe number of items smaller than K is %d", smak);
 
 	printf("\n");
 	system("pause");
@@ -135,3 +148,45 @@ int lab7_ex_5()
 
 //////////////////////////////////////////////////////////////////
 
+int bige(int num,int bg)
+{
+	num = Nput(num);
+	if (num == -1)
+		return bg;
+	else if (num < bg)
+		return bige(num, bg);
+	else if (num >= bg)
+		return bige(num, num);
+
+}
+
+//////////////////////////////////////////////////////////////////
+
+int smale(int num, int sm)
+{
+	num = Nput(num);
+	if (num == -1)
+		return sm;
+	else if (num > sm)
+		return smale(num, sm);
+	else if (num <= sm)
+		return smale(num, num);
+
+}
+
+//////////////////////////////////////////////////////////////////
+
+int smk(int n, int k,int num, int sm)
+{
+	if (!n)
+		return sm;
+	else if (n)
+	{
+		num = Nput(num);
+		if (num < k)
+			return smk(n - 1, k, num, sm + 1);
+		else if (num >= k)
+			return smk(n - 1, k, num, sm);
+	}
+
+}
