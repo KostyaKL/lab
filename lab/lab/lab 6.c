@@ -10,6 +10,7 @@ int lab6_ex_4();
 int lab6_ex_5();
 int lab6_ex_6();
 int dsum(int);
+int odde(int);
 
 
 int lab6()
@@ -104,6 +105,10 @@ int lab6_ex_1()
 
 int lab6_ex_2()
 {
+	int num = 0, flag = 0;
+	num = Nput(num);
+	flag = odde(num);
+	printf("The number consist of odd digits =  %d", flag);
 
 	printf("\n");
 	system("pause");
@@ -157,5 +162,16 @@ int dsum(int num)
 	if (!num)
 		return 0;
 	return 1+ dsum(num/10);
+}
+
+//////////////////////////////////////////////////////////////////
+
+int odde(int num)
+{
+	if (num % 2)
+		return 1;
+	else if (!num)
+		return 0;
+	return odde(num / 10);
 }
 
