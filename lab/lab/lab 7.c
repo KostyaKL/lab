@@ -11,7 +11,8 @@ int lab7_ex_5();
 int bige(int, int);
 int smale(int, int);
 int smk(int, int,int,int);
-int pw(int, int);
+double pw(double, int);
+int d2b(int);
 
 
 
@@ -129,13 +130,14 @@ int lab7_ex_3()
 
 int lab7_ex_4()
 {
-	int base = 0, expo = 0, result = 0;
+	int expo = 0;
+	double base = 0,result = 0;
 	printf("Enter base:\n");
-	scanf("%d", &base);
+	scanf("%lf", &base);
 	printf("Enter Exponent:\n");
 	expo = Nput(expo);
 	result = pw(base, expo);
-	printf("%d^%d=%d\n", base, expo, result);
+	printf("%.2lf^%d=%.2lf\n", base, expo, result);
 
 	printf("\n");
 	system("pause");
@@ -146,7 +148,10 @@ int lab7_ex_4()
 
 int lab7_ex_5()
 {
-	
+	int num=0, bin=0;
+	num = Nput(num);
+	bin = d2b(num);
+	printf("\n%d to binary %d\n", num, bin);
 
 	printf("\n");
 	system("pause");
@@ -199,7 +204,7 @@ int smk(int n, int k,int num, int sm)
 
 //////////////////////////////////////////////////////////////////
 
-int pw(int x, int n)
+double pw(double x, int n)
 {
 	if (!n)
 		return 1;
@@ -210,3 +215,13 @@ int pw(int x, int n)
 	else if (n%2)
 		return x*pw(x, n / 2)*pw(x, n / 2);		
 }
+
+//////////////////////////////////////////////////////////////////
+
+int d2b(int num)
+{
+	if (!num)
+		return 0;
+	return ((num % 2) + d2b(num / 2)*10);
+}
+
