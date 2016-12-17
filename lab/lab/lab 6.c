@@ -13,6 +13,8 @@ int dsum(int);
 int odde(int);
 int printup(int,int);
 int printdwn(int);
+int peramid(int,int,int);
+int rperamid(int,int,int);
 
 
 int lab6()
@@ -147,6 +149,9 @@ int lab6_ex_4()
 
 int lab6_ex_5()
 {
+	int num = 0;
+	num = Nput(num);
+	peramid(num,2,num);
 
 	printf("\n");
 	system("pause");
@@ -157,6 +162,9 @@ int lab6_ex_5()
 
 int lab6_ex_6()
 {
+	int num = 0;
+	num = Nput(num);
+	rperamid(num, num-1, 1);
 
 	printf("\n");
 	system("pause");
@@ -201,4 +209,40 @@ int printdwn(int num)
 		return 0;
 	printf("%d\n", num);
 	return printdwn(num-1);
+}
+
+//////////////////////////////////////////////////////////////////
+
+int peramid(int num1, int num2, int org)
+{
+	if (num2 == org + 1)
+		return 0;
+	else if (num1)
+	{
+		printf("%d\n", num1);
+		return peramid(num1 - 1, num2, org);
+	}
+	else if (num2 <= org)
+	{
+		printf("%d\n", num2);
+		return peramid(num1, num2 + 1, org);
+	}
+}
+
+//////////////////////////////////////////////////////////////////
+
+int rperamid(int num1, int num2, int pn)
+{
+	if (!num2)
+		return 0;
+	else if (pn <= num1)
+	{
+		printf("%d\n", pn);
+		return rperamid(num1,num2,pn+1);
+	}
+	else if (num2 > 0)
+	{
+		printf("%d\n", num2);
+		return rperamid(num1, num2-1, pn);
+	}
 }
