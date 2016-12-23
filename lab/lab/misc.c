@@ -59,7 +59,11 @@ int misc()
 
 int misc1()
 {
-	
+	int num;
+	printf("Enter the amount of coins: ");
+	scanf("%d", &num);
+	hanoy(num,0,0,0);
+
 	printf("\n");
 	system("pause");
 	return misc();
@@ -73,4 +77,13 @@ int misc2()
 	printf("\n");
 	system("pause");
 	return misc();
+}
+
+//////////////////////////////////////////////////////////////////
+
+int hanoy(int num, int p1, int p2, int p3)
+{
+	if (p1 == 1)
+		return 1;
+
 }

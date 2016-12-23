@@ -15,16 +15,22 @@ int main()
 		   "1.3 - Lab3-4\n"
 		   "1.5 - Lab5\n"
 		   "1.6 - Lab6\n"
-		   "1.7 - Lab7\n\n"
+		   "1.7 - Lab7\n"
+		   "1.8 - Lab8\n\n"
+
 		   "2.1 - Self Train 1\n"
 		   "2.2 - Self Train 2\n"
 		   "2.3 - Self Train 3\n\n"
-		   "3.1 - Hagasha 1\n\n"
+
+		   "3.1 - Hagasha 1\n"
+		   "3.2 - Hagasha 2\n\n"
+
 		   "4 - Ascii\n"
 		   "5 - Test\n"
 		   "6 - Console commands\n"
 		   "8 - Misc\n"
 		   "7 - Pause\n\n"
+
 		   "Exit - Quit\n");
 	printf("Enter your choise: ");
 
@@ -68,6 +74,12 @@ int main()
 		lab7();
 	}
 
+	else if (strcmp(lab_name, "1.8") == 0)
+	{
+		printf("\n");
+		lab8();
+	}
+
 	else if (strcmp(lab_name, "2.1") == 0)
 	{
 		printf("\n");
@@ -90,6 +102,12 @@ int main()
 	{
 		printf("\n");
 		hagasha_1();
+	}
+
+	else if (strcmp(lab_name, "3.2") == 0)
+	{
+		printf("\n");
+		hagasha_2();
 	}
 
 	else if (strcmp(lab_name, "quit") == 0)
