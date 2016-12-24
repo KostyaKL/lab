@@ -14,6 +14,9 @@ int factor(int);
 void print_space(int);
 
 int h2_ex4();
+int dev_sum(int);
+int betro(int);
+
 int h2_ex5();
 
 
@@ -184,7 +187,44 @@ void print_space(int line)
 
 int h2_ex4()
 {
+	int num=1,i=0;
+	do
+	{
+		if (betro(num) == 0)
+			num++;
+		else
+		{
+			printf("The betrohed number of %d is %d\n", num, betro(num));
+			num=betro(num)+1;
+			i++;
+		}
+	} while (i < 10);
+
+	system("pause");
 	return 1;
+}
+
+///////////////////////////////////////////////////////////////
+
+int dev_sum(int num)
+{
+	int sum=1, i;
+	for (i = 2;i<num;i++)
+		if (num%i==0)
+			sum += i;
+	return sum;
+}
+
+///////////////////////////////////////////////////////////////
+
+int betro(int num1)
+{
+	int num2 = dev_sum(num1)-1;
+	if (dev_sum(num2)-1 == num1)
+		return num2;
+	else
+		return 0;
+
 }
 
 ///////////////////////////////////////////////////////////////
