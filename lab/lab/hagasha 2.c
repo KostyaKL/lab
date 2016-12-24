@@ -195,10 +195,10 @@ int h2_ex4()
 		else
 		{
 			printf("The betrohed number of %d is %d\n", num, betro(num));
-			num=betro(num)+1;
+			num++;
 			i++;
 		}
-	} while (i < 10);
+	} while (i < 15);
 
 	system("pause");
 	return 1;
