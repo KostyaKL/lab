@@ -111,10 +111,6 @@ int lab8_ex_2()
 	arr = malloc(size);
 	arr_input(arr, size);
 
-	for (i = 0;i < size;i++)
-		printf("%d\t", *(arr + i));
-	printf("\n");
-
 	for (i = 1;i < size - 1;i++)
 		if (*(arr + i) == (*(arr + i + 1) + *(arr + i - 1)))
 			flag = 1;
@@ -130,11 +126,32 @@ int lab8_ex_2()
 
 int lab8_ex_3()
 {
-	int *arr, size, sum = 0, i;
+	int *arr, size, sum = 0, i, flag =1;
 	size = arr_size();
 	arr = malloc(size);
 	arr_input(arr, size);
 
+	for (i = 0;i < size - 1 && flag == 1;i++)
+	{
+		if (*(arr + i) <= *(arr + i + 1))
+			flag = 1;
+		else
+			flag = 0;
+	}
+
+	if (flag == 0)
+	{
+		flag = 1;
+		for (i = 0;i < size - 1 && flag == 1;i++)
+		{
+			if (*(arr + i) >= *(arr + i + 1))
+				flag = 1;
+			else
+				flag = 0;
+		}
+	}
+
+	printf("The array is sorted in order = %d", flag);
 
 	printf("\n");
 	system("pause");
