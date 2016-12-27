@@ -85,7 +85,6 @@ void sum_prev_arr(int *arr, int size_a)
 {
 	for (;size_a>0;size_a--)
 		*(arr + size_a - 1) = sum_of_array(arr, size_a);
-	
 }
 
 /////////////////////////////////////////////////////////////////
