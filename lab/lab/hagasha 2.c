@@ -30,14 +30,17 @@ int hagasha_2()
 	if (scanf("%d", &all_Ex_in_loop) == 1)
 		do
 		{
+			system("cls");
+			printf("Choose exercise number: \n");
 			for (i = 1; i <= 5; i++)
 				printf("Ex%d--->%d\n", i, i);
-			printf("EXIT-->0\n");
+			printf("\nEXIT-->0\n\n");
 			do {
 				select = 0;
 				printf("please select 0-5 : ");
 				scanf("%d", &select);
 			} while ((select < 0) || (select > 5));
+			printf("\n");
 			switch (select) {
 			case 1:
 				printf("Enter the size of the array: ");
@@ -64,11 +67,13 @@ int h2_ex1(int size_a)
 {
 	int *arr,i;
 	arr = malloc(size_a);
+	printf("Enter an array of %d number:\n", size_a);
 	for (i = 0; i < size_a;i++)
 		scanf("%d", (arr + i));
 	sum_prev_arr(arr, size_a);
-	for (;size_a > 0;size_a--)
-		printf("%d\n", arr[size_a - 1]);
+	printf("\n");
+	for (i=0;i<size_a;i++)
+		printf("%d\t", arr[i]);
 	printf("\n");
 	system("pause");
 	return 1;
@@ -197,7 +202,7 @@ void print_space(int line)
 int h2_ex4()
 {
 	int num=1,i=0,lim=0;
-	printf("Enter your n number: ");
+	printf("Enter your n number(for large number it may take a few seconds, be patient): ");
 	do
 	{
 		scanf("%d", &num);
@@ -258,7 +263,8 @@ int h2_ex5()
 			printf("You have entered a negative number, try again\n");
 	} while (n < 0);
 	root = new_rap(1, n);
-	printf("The root of %.3lf is %.3lf\n", n, root);
+	printf("The root of %.2lf is %.2lf\n", n, root);
+	system("pause");
 	return 1;
 }
 

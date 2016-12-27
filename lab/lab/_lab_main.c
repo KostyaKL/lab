@@ -110,7 +110,7 @@ int main()
 		hagasha_2();
 	}
 
-	else if (strcmp(lab_name, "quit") == 0)
+	else if (strcmp(lab_name, "quit") == 0 || strcmp(lab_name, "0") == 0)
 	{
 		exit(0);
 	}
