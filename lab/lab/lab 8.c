@@ -185,11 +185,18 @@ int lab8_ex_4()
 
 int lab8_ex_5()
 {
-	int *arr, size, sum = 0, i;
+	int *arr, size, sum = 0, i,flag=0;
 	size = arr_size();
 	arr = malloc(size);
 	arr_input(arr, size);
 
+	for (i = 0;i < (size / 2);i++)
+	{
+		if (*(arr + i) == *(arr + size - 1 + i))
+			flag = 1;
+	}
+
+	printf("The array is pilemdrome = %d", flag);
 
 	printf("\n");
 	system("pause");
