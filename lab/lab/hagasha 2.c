@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
-int h2_ex1();
+int h2_ex1(int);
 int sum_of_array(int *, int);
 int sum_prev_arr(int *, int);
 
@@ -18,16 +19,12 @@ int dev_sum(int);
 int betro(int);
 
 int h2_ex5();
-
-
-
-int num_input(int);
-
+double new_rap(double, double);
 
 
 int hagasha_2()
 {
-	int select = 0, i, all_Ex_in_loop = 0;
+	int select = 0, i, all_Ex_in_loop = 0, size_a=1;
 	system("cls");
 	printf("Run menu once or cyclically?\n(Once - enter 0, cyclically - enter other number) ");
 	if (scanf("%d", &all_Ex_in_loop) == 1)
@@ -42,7 +39,16 @@ int hagasha_2()
 				scanf("%d", &select);
 			} while ((select < 0) || (select > 5));
 			switch (select) {
-			case 1: h2_ex1(); break;
+			case 1:
+				printf("Enter the size of the array: ");
+				do
+				{
+					scanf("%d", &size_a);
+					if (size_a < 0)
+						printf("You must enter a positive number");
+				} while (size_a < 0);
+				h2_ex1(size_a);
+				break;
 			case 2: h2_ex2(); break;
 			case 3: h2_ex3(); break;
 			case 4: h2_ex4(); break;
@@ -54,9 +60,12 @@ int hagasha_2()
 
 ///////////////////////////////////////////////////////////////
 
-int h2_ex1()
+int h2_ex1(int size_a)
 {
-	int arr[] = { 7,5,-8,3,4,21,-10,-3,2,4 }, size_a = sizeof(arr)/sizeof(int);
+	int *arr,i;
+	arr = malloc(size_a);
+	for (i = 0; i < size_a;i++)
+		scanf("%d", (arr + i));
 	sum_prev_arr(arr, size_a);
 	for (;size_a > 0;size_a--)
 		printf("%d\n", arr[size_a - 1]);
@@ -187,18 +196,27 @@ void print_space(int line)
 
 int h2_ex4()
 {
-	int num=1,i=0;
+	int num=1,i=0,lim=0;
+	printf("Enter your n number: ");
 	do
 	{
-		if (betro(num) == 0)
-			num++;
+		scanf("%d", &num);
+		if (num <= 0)
+			printf("You have entered a negative number, try again\n");
+	} while (num <= 0);
+	i = num;
+	do
+	{
+		if (betro(i) == 0)
+			i--;
 		else
 		{
-			printf("The betrohed number of %d is %d\n", num, betro(num));
-			num++;
-			i++;
+			lim=printf("The betrohed number of %d is %d\n", i, betro(i));
+			i--;
 		}
-	} while (i < 15);
+	} while (i >0);
+	if (!lim)
+		printf("There is no betrohed numbers bellow %d\n", num);
 
 	system("pause");
 	return 1;
@@ -231,20 +249,30 @@ int betro(int num1)
 
 int h2_ex5()
 {
+	double n, root;
+	printf("Enter the number you want to calculate the root for: ");
+	do
+	{
+		scanf("%lf", &n);
+		if (n < 0)
+			printf("You have entered a negative number, try again\n");
+	} while (n < 0);
+	root = new_rap(1, n);
+	printf("The root of %.3lf is %.3lf\n", n, root);
 	return 1;
 }
 
+///////////////////////////////////////////////////////////////
 
-///////////////////////////////
-int num_input(int num)
+double new_rap(double x, double n)
 {
-	printf("Enter a positive number: ");
-	do
-	{
-		scanf("%d", &num);
-		if (num < -1)
-			printf("You have entered negative number, Try again\n\n");
-	} while (num < -1);
-
-	return num;
+	double temp,ret;
+	ret = (x - (x*x - n) / (2 * x));
+	temp = ret - x;
+	temp = fabs(temp);
+	if (temp <= 0.00001)
+		return x;
+	return new_rap((x - (x*x - n) / (2 * x)), n);
 }
+
+
