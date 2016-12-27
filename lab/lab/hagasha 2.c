@@ -4,7 +4,6 @@
 
 void h2_ex1(int);
 int sum_of_array(int *, int);
-void sum_prev_arr(int *, int);
 
 void h2_ex2();
 int ab_range(int, int);
@@ -66,28 +65,20 @@ int hagasha_2()
 void h2_ex1(int size_a)
 {
 	int *arr,i;
-	arr = malloc(size_a+1);
+	arr = malloc(size_a+5);
 	printf("Enter an array of %d number:\n", size_a);
 	for (i = 0; i < size_a;i++)
 		scanf("%d", (arr + i));
-	sum_prev_arr(arr, size_a);
+	for (i = size_a;i > 0;i--)
+		*(arr + i - 1) = sum_of_array(arr, i);
 	printf("\n");
 	for (i=0;i<size_a;i++)
 		printf("%d\t", arr[i]);
 	printf("\n");
 	system("pause");
-	free(arr);
 }
 
 ///////////////////////////////////////////////////////////////
-
-void sum_prev_arr(int *arr, int size_a)
-{
-	for (;size_a>0;size_a--)
-		*(arr + size_a - 1) = sum_of_array(arr, size_a);
-}
-
-/////////////////////////////////////////////////////////////////
 
 int sum_of_array(int *arr, int size_o)
 {
