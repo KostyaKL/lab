@@ -2,23 +2,23 @@
 #include <stdlib.h>
 #include <math.h>
 
-int h2_ex1(int);
+void h2_ex1(int);
 int sum_of_array(int *, int);
-int sum_prev_arr(int *, int);
+void sum_prev_arr(int *, int);
 
-int h2_ex2();
+void h2_ex2();
 int ab_range(int, int);
 
-int h2_ex3();
+void h2_ex3();
 int print_pascal_line(int);
 int factor(int);
 void print_space(int);
 
-int h2_ex4();
+void h2_ex4();
 int dev_sum(int);
 int betro(int);
 
-int h2_ex5();
+void h2_ex5();
 double new_rap(double, double);
 
 
@@ -63,10 +63,10 @@ int hagasha_2()
 
 ///////////////////////////////////////////////////////////////
 
-int h2_ex1(int size_a)
+void h2_ex1(int size_a)
 {
 	int *arr,i;
-	arr = malloc(size_a);
+	arr = malloc(size_a+1);
 	printf("Enter an array of %d number:\n", size_a);
 	for (i = 0; i < size_a;i++)
 		scanf("%d", (arr + i));
@@ -76,18 +76,16 @@ int h2_ex1(int size_a)
 		printf("%d\t", arr[i]);
 	printf("\n");
 	system("pause");
-	return 1;
+	free(arr);
 }
 
 ///////////////////////////////////////////////////////////////
 
-int sum_prev_arr(int *arr, int size_a)
+void sum_prev_arr(int *arr, int size_a)
 {
-	if (size_a == 1)
-		return 1;
-	*(arr + size_a - 1) = sum_of_array(arr, size_a);
-	sum_prev_arr(arr, size_a - 1);
-
+	for (;size_a>0;size_a--)
+		*(arr + size_a - 1) = sum_of_array(arr, size_a);
+	
 }
 
 /////////////////////////////////////////////////////////////////
@@ -102,7 +100,7 @@ int sum_of_array(int *arr, int size_o)
 
 ///////////////////////////////////////////////////////////////
 
-int h2_ex2()
+void h2_ex2()
 {
 	int a, b;
 	printf("Enter two numbers so that a<b:\n"
@@ -118,7 +116,6 @@ int h2_ex2()
 
 	printf("Return Value: %d\n", ab_range(a, b));
 	system("pause");
-	return 1;
 }
 
 ///////////////////////////////////////////////////////////////////
@@ -141,10 +138,10 @@ int ab_range(int a, int b)
 
 ///////////////////////////////////////////////////////////////
 
-int h2_ex3()
+void h2_ex3()
 {
 	int lines,i;
-	printf("Enter number of lines tou want to print: ");
+	printf("Enter number of lines you want to print: ");
 	do
 	{
 		scanf("%d", &lines);
@@ -159,7 +156,6 @@ int h2_ex3()
 		printf("\n");
 	}
 	system("pause");
-	return 1;
 }
 
 ///////////////////////////////////////////////////////////////
@@ -199,7 +195,7 @@ void print_space(int line)
 
 ///////////////////////////////////////////////////////////////
 
-int h2_ex4()
+void h2_ex4()
 {
 	int num=1,i=0,lim=0;
 	printf("Enter your n number(for large number it may take a few seconds, be patient): ");
@@ -224,7 +220,6 @@ int h2_ex4()
 		printf("There is no betrohed numbers bellow %d\n", num);
 
 	system("pause");
-	return 1;
 }
 
 ///////////////////////////////////////////////////////////////
@@ -252,7 +247,7 @@ int betro(int num1)
 
 ///////////////////////////////////////////////////////////////
 
-int h2_ex5()
+void h2_ex5()
 {
 	double n, root;
 	printf("Enter the number you want to calculate the root for: ");
@@ -265,7 +260,6 @@ int h2_ex5()
 	root = new_rap(1, n);
 	printf("The root of %.2lf is %.2lf\n", n, root);
 	system("pause");
-	return 1;
 }
 
 ///////////////////////////////////////////////////////////////
