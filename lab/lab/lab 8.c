@@ -166,9 +166,17 @@ int lab8_ex_4()
 	size = arr_size();
 	arr = malloc(size);
 	arr_input(arr, size);
+	for (i = 0;i < (size / 2);i++)
+	{
+		*(arr + i) += *(arr + size-1 - i);
+		*(arr + size-1 - i) = *(arr + i) - *(arr + size-1 - i);
+		*(arr + i) -= *(arr + size-1 - i);
+	}
 
-
-	printf("\n");
+	for (i = 0;i < size;i++)
+		printf("%d\t", *(arr + i));
+	
+	printf("\n\n");
 	system("pause");
 	return lab8();
 }
