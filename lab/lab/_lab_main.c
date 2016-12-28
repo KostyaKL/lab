@@ -192,13 +192,9 @@ int ascii()
 
 int testim ()
 {
-	int *p,n;
-	scanf("%d", &n);
-	p = malloc(n);
-	free(p);
+	
 
-
-	printf("\n");
+	printf("1\n");
 	system("pause");
 	return main();
 }

@@ -65,7 +65,7 @@ int hagasha_2()
 void h2_ex1(int size_a)
 {
 	int *arr,i;
-	arr = malloc(size_a+5);
+	arr = (int*)malloc(size_a*sizeof(int));
 	printf("Enter an array of %d number:\n", size_a);
 	for (i = 0; i < size_a;i++)
 		scanf("%d", (arr + i));
@@ -75,6 +75,7 @@ void h2_ex1(int size_a)
 	for (i=0;i<size_a;i++)
 		printf("%d\t", arr[i]);
 	printf("\n");
+	free(arr);
 	system("pause");
 }
 
