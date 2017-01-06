@@ -1,12 +1,13 @@
 /*
 Assigned by:
 Student 1: Melinda Levi ID:201310356
-Student 2: Kostya Lokshin ID:310765821	*/
+Student 2: Kostya Lokshin ID:310765821
+*/
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-//declarations:
+//declaration of functions:
 void h2_ex1(int); //function for excercise 1
 int sum_of_array(int *, int); //function that returns the sum of an array
 
@@ -15,7 +16,6 @@ int ab_range(int, int); // function to simplify the problem in ex 2
 
 void h2_ex3(); //function for excercise 3
 int print_pascal_line(int); //functio to print a N line in pascal peramid
-int factor(int); //function to calculate the factor of a number
 void print_space(int);// function to print a space in a N line in pasca peramid
 
 void h2_ex4(); //function for excercise 4
@@ -190,33 +190,22 @@ void h2_ex3()
 
 ///////////////////////////////////////////////////////////////
 
-int print_pascal_line(int n)//functio to print a N line in pascal peramid
+int print_pascal_line(int n)//function to print a N line in pascal peramid
 {
-	int pos, k;
+	int pos=1, k,i;
 	/*
 	pos - the value of a number in k position in N line in pascal peramid
 	k - the position of a number in N line in pascal permaid
 	*/
+	printf("%d  ", pos);
 	if (n == 0)// print 1 if the line is 0
-	{
-		printf("1");
 		return 1;
-	}
-	for (k = n ;k >= 0;k--)// loop to print all the members of N line
+	
+	for (k = n, i=1;k > 0;k--,i++)// loop to print all the members of N line
 	{
-		pos = factor(n) / (factor(k)*factor(n - k));//acording to the formula: C(n,k)=(n!)/((k!)*(n-k)!)
+		pos = (pos*k)/i;//acording to the formula that in each row the ratio between two folowing numbers is k+i=line number, at first position i=1 and k=line number, each position the i++ and the k--
 		printf("%d  ", pos);
 	}
-}
-
-//////////////////////////////////////////////////////////////
-
-int factor(int n) //function to calculate the factor of a number
-{
-	if (n <= 0)//if the number is 0 return 1
-		return 1;
-	return n*factor(n - 1);// recursion to calculate the factor of (n-1) multiplied by n
-
 }
 
 //////////////////////////////////////////////////////////////
