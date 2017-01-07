@@ -9,13 +9,12 @@ Student 2: Kostya Lokshin ID:310765821
 #include <math.h>
 //declaration of functions:
 void h2_ex1(int); //function for excercise 1
-int sum_of_array(int *, int); //function that returns the sum of an array
 
 void h2_ex2(); //function for excercise 2
 int ab_range(int, int); // function to simplify the problem in ex 2
 
 void h2_ex3(); //function for excercise 3
-int print_pascal_line(int); //functio to print a N line in pascal peramid
+void print_pascal_line(int); //functio to print a N line in pascal peramid
 void print_space(int);// function to print a space in a N line in pasca peramid
 
 void h2_ex4(); //function for excercise 4
@@ -88,27 +87,14 @@ void h2_ex1(int size_a)
 	printf("Enter an array of %d number:\n", size_a);
 	for (i = 0; i < size_a;i++)//input number into the array from the user
 		scanf("%d", (arr + i));
-	for (i = size_a;i > 0;i--)//loop to change the value of a number at a specific position in the array to the sum of all the number in the array from the begining to the number
-		*(arr + i - 1) = sum_of_array(arr, i);//doing the above using "sum_of_array" function, starting from the last number in the array and going backwards to the first
+	for (i = 0;i < size_a-1;i++)//loop to change the value of a number at a specific position in the array to the sum of all the number in the array from the begining to the number
+		*(arr + i + 1) = *(arr + i) + *(arr + i + 1);//doing the above by summing the first two numbers and the going forward to the end of the array by summing the next number with the current
 	printf("\n");
 	for (i=0;i<size_a;i++)//print the new arry after the change of the numbers
 		printf("%d\t", arr[i]);
 	printf("\n");
 	free(arr);//free the memory that was allocated to the "arr" array
 	system("pause");
-}
-
-///////////////////////////////////////////////////////////////
-
-int sum_of_array(int *arr, int size_o) //function that returns the sum of an array
-{/*
- arr - pionter for the begining of the array
- size_o - the size of an array
- */
-	int sum = 0;//the sum te be returned
-	for (;size_o > 0;size_o--)//loop to calculate the sum of all the numbers in the array
-		sum += *(arr + size_o - 1);
-	return sum;//return the sum
 }
 
 ///////////////////////////////////////////////////////////////
@@ -190,7 +176,7 @@ void h2_ex3()
 
 ///////////////////////////////////////////////////////////////
 
-int print_pascal_line(int n)//function to print a N line in pascal peramid
+void print_pascal_line(int n)//function to print a N line in pascal peramid
 {
 	int pos=1, k,i;
 	/*
@@ -220,11 +206,12 @@ void print_space(int line)// function to print a space in a N line in pasca pera
 
 void h2_ex4()
 {
-	int num=1,i=0,lim=0;
+	int num=1,i=0,lim=0, flag=0;
 	/*
 	num - number to find all the betrohed numbers below it
 	i - index
 	lim - value if there were no betrohed numbers found below num
+	falg - determine if a number is betrohed or not
 	*/
 	printf("Enter your n number(for large number it may take a few seconds, be patient): ");
 	do
@@ -236,14 +223,12 @@ void h2_ex4()
 	i = num;
 	do
 	{
-		if (betro(i) == 0)//if the index number has no betrohed then do nothing and keep checking
-			i--;
+		flag = betro(i);
+		if (flag < i);//if the index number has no betrohed or if the betrohed number that is found smaller than the number that was checked then do nothing and keep checking
 		else
-		{
-			lim=printf("The betrohed number of %d is %d\n", i, betro(i));// if betrohed number is found then print it
+			lim = printf("The betrohed number of %d is %d\n", i, flag);// if betrohed number is found then print it
 			//lim will change is value to 1 if at least one betrohed number is founf
-			i--;
-		}
+		i--;
 	} while (i >0);//loop to check all the numbers below num
 	if (!lim)
 		printf("There is no betrohed numbers bellow %d\n", num);//print if no betrohed numbers found below num
@@ -261,7 +246,7 @@ int dev_sum(int num)//function to calculate the sum of the whole deviders of a N
 	sum - to be returned
 	i - index
 	*/
-	for (i = 2;i<num;i++)//loop to calculate the sum of all whole deviders of num
+	for (i = 2;i<(num/2)+1;i++)//loop to calculate the sum of all whole deviders of num
 		if (num%i==0)
 			sum += i;
 	return sum;
