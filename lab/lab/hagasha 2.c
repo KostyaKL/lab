@@ -8,7 +8,8 @@ Student 2: Kostya Lokshin ID:310765821
 #include <stdlib.h>
 #include <math.h>
 //declaration of functions:
-void h2_ex1(int); //function for excercise 1
+void h2_ex1(); //function for excercise 1
+void arr_sum_up(int*, int);
 
 void h2_ex2(); //function for excercise 2
 int ab_range(int, int); // function to simplify the problem in ex 2
@@ -28,12 +29,11 @@ double absolut(double a); //function to return an absolut value of a number
 
 int hagasha_2()
 {
-	int select = 0, i, all_Ex_in_loop = 0, size_a=1;
+	int select = 0, i, all_Ex_in_loop = 0;
 	/*
 	select - value to choose an exercise to display
 	i - index to print the menu
 	all_ex_in_loop - value to choose if the program will return to main menu at the end of an exersice or it will exit
-	size_a - a value for the user to enter the size of an array for exersize 1
 	*/
 	system("cls");
 	printf("Run menu once or cyclically?\n(Once - enter 0, cyclically - enter other number) ");
@@ -52,15 +52,7 @@ int hagasha_2()
 			} while ((select < 0) || (select > 5));//loop to get a correct input from the user to choose the exercise to show
 			printf("\n");
 			switch (select) {//main menu switch case
-			case 1:// ex 1
-				printf("Enter the size of the array: ");
-				do
-				{
-					scanf("%d", &size_a);
-					if (size_a < 0)
-						printf("You must enter a positive number");
-				} while (size_a < 0);// loop to get a correct number witch represents a size of an array
-				h2_ex1(size_a);// calling for the function for the first excercise, the input for the function is the size of an array
+			case 1:	h2_ex1();//calling the function for ex 1
 				break;
 			case 2: h2_ex2();//calling the function for ex 2
 				break;
@@ -77,25 +69,46 @@ int hagasha_2()
 
 ///////////////////////////////////////////////////////////////
 
-void h2_ex1(int size_a)
+void h2_ex1()
 {
-	int *arr,i;
+	int *arr,i, size_a=1;
 	/*
 	arr - pointer for the start of an array
 	i - index
+	size_a - a value for the user to enter the size of an array
 	*/
+	printf("Enter the size of the array: ");
+	do
+	{
+		scanf("%d", &size_a);
+		if (size_a < 0)
+			printf("You must enter a positive number");
+	} while (size_a < 0);// loop to get a correct number witch represents a size of an array
+
 	arr = (int*)malloc(size_a*sizeof(int));//memory allocation for an array that starts at arr in the size of "size_a" input
+	
 	printf("Enter an array of %d number:\n", size_a);
+
 	for (i = 0; i < size_a;i++)//input number into the array from the user
 		scanf("%d", (arr + i));
-	for (i = 0;i < size_a-1;i++)//loop to change the value of a number at a specific position in the array to the sum of all the number in the array from the begining to the number
-		*(arr + i + 1) = *(arr + i) + *(arr + i + 1);//doing the above by summing the first two numbers and the going forward to the end of the array by summing the next number with the current
-	printf("\n");
+
+	arr_sum_up(arr, size_a);
+
 	for (i=0;i<size_a;i++)//print the new arry after the change of the numbers
-		printf("%d\t", arr[i]);
+		printf("%d\t", *(arr+i));
+
 	printf("\n");
 	free(arr);//free the memory that was allocated to the "arr" array
 	system("pause");
+}
+
+///////////////////////////////////////////////////////////////
+
+void arr_sum_up(int *a, int size)
+{
+	int i;//i - index
+	for (i = 0;i < size - 1;i++)//loop to change the value of a number at a specific position in the array to the sum of all the number in the array from the begining to the number
+		*(a + i + 1) = *(a + i) + *(a + i + 1);//doing the above by summing the first two numbers and the going forward to the end of the array by summing the next number with the current
 }
 
 ///////////////////////////////////////////////////////////////
@@ -141,12 +154,12 @@ int ab_range(int a, int b) // function to simplify the problem in ex 2
 	while (num != -1)// get input from the user until he hits -1, then stop
 	{
 		if (num > range && num < b) // condition to calculate the sum of user input between range until b
-			sum_a += num;
-		else if (num > a && num < range)// condition to calculate the sum of user input between a until range
 			sum_b += num;
+		else if (num > a && num < range)// condition to calculate the sum of user input between a until range
+			sum_a += num;
 		scanf("%d", &num);
 	}
-	return sum_a-sum_b; //return the diff between sum_a and sum_b
+	return sum_b-sum_a; //return the diff between sum_a and sum_b
 }
 
 ///////////////////////////////////////////////////////////////
@@ -183,6 +196,7 @@ void print_pascal_line(int n)//function to print a N line in pascal peramid
 	/*
 	pos - the value of a number in k position in N line in pascal peramid
 	k - the position of a number in N line in pascal permaid
+	i - index
 	*/
 	printf("%d  ", pos);
 	if (n == 0)// print 1 if the line is 0
@@ -301,7 +315,7 @@ double new_rap(double x, double n) // function to calculate the root of a number
 	temp = absolut(temp); // find the absolute value of temp using function absolut
 	if (temp <= 0.00001)//return the value of x if the absolute value of temp is close to 0
 		return x; // when the condition is met x=root(n)
-	return new_rap((x - (x*x - n) / (2 * x)), n);//use recursion until the absolute value of temp is close to 0 
+	return new_rap(ret, n);//use recursion until the absolute value of temp is close to 0 
 }
 
 /////////////////////////////////////////////////////////////////////
