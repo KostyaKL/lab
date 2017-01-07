@@ -23,6 +23,7 @@ int betro(int); // function to check if a number have a betrohed number
 
 void h2_ex5(); //function for excercise 5
 double new_rap(double, double); // function to calculate the root of a number using Newton-Raphsin method
+double absolut(double a); //function to return an absolut value of a number
 
 
 int hagasha_2()
@@ -297,10 +298,20 @@ double new_rap(double x, double n) // function to calculate the root of a number
 	*/
 	ret = (x - (x*x - n) / (2 * x));//formula to calculate xi+1
 	temp = ret - x;//calculate [xi-(xi-1)]
-	temp = fabs(temp); // find the absolute value of temp
+	temp = absolut(temp); // find the absolute value of temp using function absolut
 	if (temp <= 0.00001)//return the value of x if the absolute value of temp is close to 0
 		return x; // when the condition is met x=root(n)
 	return new_rap((x - (x*x - n) / (2 * x)), n);//use recursion until the absolute value of temp is close to 0 
+}
+
+/////////////////////////////////////////////////////////////////////
+
+double absolut(double a) //function to return an absolut value of a number
+{
+	if (a >= 0)//if the number is positive return the number
+		return a;
+	else
+		return a*(-1);//if the number is negative, turn it to positive by multipling by -1 and return the positive number
 }
 
 
