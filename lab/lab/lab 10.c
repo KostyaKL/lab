@@ -4,6 +4,8 @@
 #include <math.h>
 
 int lab10_ex_1();
+char com_ch(char *);
+
 int lab10_ex_2();
 
 
@@ -13,8 +15,8 @@ int lab10()
 	system("cls");
 	printf("Welcome to lab 10 Page!\n"
 		"_____________________________\n"
-		"1 - ---\n"
-		"2 - ---\n"
+		"1 - Common char\n"
+		"2 - Char sum\n"
 		"\n"
 
 		"Back - Return to main\n"
@@ -59,10 +61,39 @@ int lab10()
 
 int lab10_ex_1()
 {
+	char str[100] = { 0 };
+	printf("Enter your string: ");
+	scanf("%s", str);
+
+	printf("The most common char is %c", com_ch(str));
 
 	printf("\n");
 	system("pause");
 	return lab10();
+}
+
+//////////////////////////////////////////////////////////////////
+
+char com_ch(char *str)
+{
+	int size = strlen(str), *ca, i, ret = 0, tmp = 0;
+	ca = (int*)calloc(26, sizeof(int));
+	for (i = 0;i < size;i++)
+		*(ca + *(str + i) - 97) += 1;
+
+	tmp = *ca;
+	for (i = 0;i < 25;i++)
+		if (tmp >= *(ca + i));
+		else
+		{
+			tmp = *(ca + i);
+			ret = i;
+		}
+
+	free(ca);
+
+	printf("\n\n");
+	return ret+97;
 }
 
 //////////////////////////////////////////////////////////////////
