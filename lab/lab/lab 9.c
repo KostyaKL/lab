@@ -11,7 +11,10 @@ int lab9_ex_2();
 int peli(int*, int);
 
 int lab9_ex_3();
+int sort_arr(int *, int);
+
 int lab9_ex_4();
+int pair_sum(int*, int);
 
 
 
@@ -145,7 +148,7 @@ int peli(int*a, int s)
 {
 	if (s <= 1)
 		return 1;
-	if (*a == *(a + s - 1))
+	else if (*a == *(a + s - 1))
 		peli(a + 1, s - 2);
 	else
 		return 0;
@@ -155,6 +158,17 @@ int peli(int*a, int s)
 
 int lab9_ex_3()
 {
+	int *arr, size, i;
+	size = arr_size();
+	arr = (int*)malloc(size * sizeof(int));
+	arr_input(arr, size);
+
+	for (i = 0;i < size;i++)
+		printf("%d\t", *(arr + i));
+	printf("\n\nThe array is a sorted: %d\n", sort_arr(arr, size));
+
+
+	free(arr);
 
 	printf("\n");
 	system("pause");
@@ -163,11 +177,55 @@ int lab9_ex_3()
 
 //////////////////////////////////////////////////////////////////
 
+int sort_arr(int *a, int s)
+{
+	if (s <= 1)
+		return 1;
+	else if (*(a + s - 1) > *(a + s - 2))
+		sort_arr(a, s - 1);
+	else
+		return 0;
+}
+
+//////////////////////////////////////////////////////////////////
+
 int lab9_ex_4()
 {
+	int *arr, size, i;
+	do
+	{
+		size = arr_size();
+		if (size < 2)
+			printf("You must eter 2 or higher, try again\n");
+	} while (size < 2);
+	
+	arr = (int*)malloc(size * sizeof(int));
+	arr_input(arr, size);
 
+	for (i = 0;i < size;i++)
+		printf("%d\t", *(arr + i));
+	printf("\n\nThe biggest pair-sum is: %d\n", pair_sum(arr, size));
+
+
+	free(arr);
 	printf("\n");
 	system("pause");
 	return lab9();
+}
+
+////////////////////////////////////////////////////////////////////////
+
+int pair_sum(int*a, int s)
+{
+	int temp= (*(a + s - 1) + *(a + s - 2));
+	if (s == 2)
+		return temp;
+	else 
+		temp=pair_sum(a, s - 1);
+
+	if (*(a + s - 1) + *(a + s - 2) >= temp)
+		return *(a + s - 1) + *(a + s - 2);
+	else
+		return temp;
 }
 
