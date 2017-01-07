@@ -88,7 +88,7 @@ int lab8_ex_1()
 {
 	int *arr, size,sum=0 ,i;
 	size = arr_size();
-	arr = malloc(size);
+	arr = (int*)malloc(size * sizeof(int));
 	arr_input(arr, size);
 	
 	for (i = 0;i < size;i++)
@@ -96,7 +96,7 @@ int lab8_ex_1()
 			sum += *(arr + i);
 
 	printf("Te sum of all even number in the array is %d\n", sum);
-
+	free(arr);
 	printf("\n");
 	system("pause");
 	return lab8();
@@ -108,7 +108,7 @@ int lab8_ex_2()
 {
 	int *arr, size, sum = 0, i, flag=0;
 	size = arr_size();
-	arr = malloc(size);
+	arr = (int*)malloc(size * sizeof(int));
 	arr_input(arr, size);
 
 	for (i = 1;i < size - 1;i++)
@@ -116,7 +116,7 @@ int lab8_ex_2()
 			flag = 1;
 
 	printf("The array has a number the equals the sum of his neigbors = %d", flag);
-	
+	free(arr);
 	printf("\n");
 	system("pause");
 	return lab8();
@@ -128,7 +128,7 @@ int lab8_ex_3()
 {
 	int *arr, size, sum = 0, i, flag =1;
 	size = arr_size();
-	arr = malloc(size);
+	arr = (int*)malloc(size * sizeof(int));
 	arr_input(arr, size);
 
 	for (i = 0;i < size - 1 && flag == 1;i++)
@@ -152,7 +152,7 @@ int lab8_ex_3()
 	}
 
 	printf("The array is sorted in order = %d", flag);
-
+	free(arr);
 	printf("\n");
 	system("pause");
 	return lab8();
@@ -164,7 +164,7 @@ int lab8_ex_4()
 {
 	int *arr, size, sum = 0, i;
 	size = arr_size();
-	arr = malloc(size);
+	arr = (int*)malloc(size * sizeof(int));
 	arr_input(arr, size);
 	for (i = 0;i < (size / 2);i++)
 	{
@@ -175,7 +175,7 @@ int lab8_ex_4()
 
 	for (i = 0;i < size;i++)
 		printf("%d\t", *(arr + i));
-	
+	free(arr);
 	printf("\n\n");
 	system("pause");
 	return lab8();
@@ -187,7 +187,7 @@ int lab8_ex_5()
 {
 	int *arr, size, sum = 0, i,flag=0;
 	size = arr_size();
-	arr = malloc(size);
+	arr = (int*)malloc(size*sizeof(int));
 	arr_input(arr, size);
 
 	for (i = 0;i < (size / 2);i++)
@@ -197,6 +197,7 @@ int lab8_ex_5()
 	}
 
 	printf("The array is pilemdrome = %d", flag);
+	free(arr);
 
 	printf("\n");
 	system("pause");

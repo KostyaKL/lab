@@ -40,7 +40,7 @@ int lab10()
 		return main();
 	}
 
-	if (strcmp(drill_num, "quit") == 0)
+	if (strcmp(drill_num, "quit") == 0 || strcmp(drill_num, "0") == 0)
 	{
 		exit(0);
 	}
