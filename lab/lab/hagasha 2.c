@@ -313,5 +313,3 @@ double absolut(double a) //function to return an absolut value of a number
 	else
 		return a*(-1);//if the number is negative, turn it to positive by multipling by -1 and return the positive number
 }
-
-
