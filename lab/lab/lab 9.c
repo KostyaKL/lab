@@ -4,11 +4,12 @@
 #include <math.h>
 
 int lab9_ex_1();
-void rev_arr(int*, int*);
+void rev_arr(int*, int);
 void swap(int*, int*);
 
-
 int lab9_ex_2();
+int peli(int*, int);
+
 int lab9_ex_3();
 int lab9_ex_4();
 
@@ -89,7 +90,7 @@ int lab9_ex_1()
 		printf("%d\t", *(arr + i));
 	printf("\n\n");
 
-	rev_arr(arr, (arr+size-1));
+	rev_arr(arr, size);
 
 	for (i = 0;i < size;i++)
 		printf("%d\t", *(arr + i));
@@ -102,34 +103,52 @@ int lab9_ex_1()
 
 ///////////////////////////////////////////////////////////////////
 
-void rev_arr(int *af, int *al)
+void rev_arr(int *a, int s)
 {
-	if ((al-af)<=1)
+	if (s <= 1)
 		return 0;
-	swap(af, al);
-	rev_arr(af+1,al-1);
+	swap(a, (a+s-1));
+	rev_arr(a+1, s-2);
 }
 
 //////////////////////////////////////////////////////////////////
 
 void swap(int*a, int*b)
 {
-	int temp = *a,ca,cb;
-	ca = *a;
-	cb = *b;
+	int temp = *a;
 	*a = *b;
 	*b = temp;
-	ca = *a;
-	cb = *b;
 }
 //////////////////////////////////////////////////////////////////
 
 int lab9_ex_2()
 {
+	int *arr, size, i;
+	size = arr_size();
+	arr = (int*)malloc(size * sizeof(int));
+	arr_input(arr, size);
 
+	for (i = 0;i < size;i++)
+		printf("%d\t", *(arr + i));
+	printf("\n\nThe array is a pelindrome: %d\n", peli(arr,size));
+
+
+	free(arr);
 	printf("\n");
 	system("pause");
 	return lab9();
+}
+
+////////////////////////////////////////////////////////////////////
+
+int peli(int*a, int s)
+{
+	if (s <= 1)
+		return 1;
+	if (*a == *(a + s - 1))
+		peli(a + 1, s - 2);
+	else
+		return 0;
 }
 
 //////////////////////////////////////////////////////////////////
