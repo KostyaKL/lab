@@ -9,7 +9,7 @@ Student 2: Kostya Lokshin ID:310765821
 #include <math.h>
 //declaration of functions:
 void h2_ex1(); //function for excercise 1
-void arr_sum_up(int*, int);
+void arr_sum_up(int*, int);//function to sum the array
 
 void h2_ex2(); //function for excercise 2
 int ab_range(int, int); // function to simplify the problem in ex 2
@@ -21,6 +21,7 @@ void print_space(int);// function to print a space in a N line in pasca peramid
 void h2_ex4(); //function for excercise 4
 int dev_sum(int); //function to calculate the sum of the whole deviders of a N number
 int betro(int); // function to check if a number have a betrohed number
+int round_num(double);//function to return the round (up/down) of a number
 
 void h2_ex5(); //function for excercise 5
 double new_rap(double, double); // function to calculate the root of a number using Newton-Raphsin method
@@ -71,7 +72,7 @@ int hagasha_2()
 
 void h2_ex1()
 {
-	int *arr,i, size_a=1;
+	int *arr, i, size_a = 1;
 	/*
 	arr - pointer for the start of an array
 	i - index
@@ -85,8 +86,8 @@ void h2_ex1()
 			printf("You must enter a positive number");
 	} while (size_a < 0);// loop to get a correct number witch represents a size of an array
 
-	arr = (int*)malloc(size_a*sizeof(int));//memory allocation for an array that starts at arr in the size of "size_a" input
-	
+	arr = (int*)malloc(size_a * sizeof(int));//memory allocation for an array that starts at arr in the size of "size_a" input
+
 	printf("Enter an array of %d number:\n", size_a);
 
 	for (i = 0; i < size_a;i++)//input number into the array from the user
@@ -94,8 +95,8 @@ void h2_ex1()
 
 	arr_sum_up(arr, size_a);
 
-	for (i=0;i<size_a;i++)//print the new arry after the change of the numbers
-		printf("%d\t", *(arr+i));
+	for (i = 0;i<size_a;i++)//print the new arry after the change of the numbers
+		printf("%d\t", *(arr + i));
 
 	printf("\n");
 	free(arr);//free the memory that was allocated to the "arr" array
@@ -104,7 +105,7 @@ void h2_ex1()
 
 ///////////////////////////////////////////////////////////////
 
-void arr_sum_up(int *a, int size)
+void arr_sum_up(int *a, int size) //function to sum the array
 {
 	int i;//i - index
 	for (i = 0;i < size - 1;i++)//loop to change the value of a number at a specific position in the array to the sum of all the number in the array from the begining to the number
@@ -121,7 +122,7 @@ void h2_ex2()
 	b - high limit
 	*/
 	printf("Enter two numbers so that a<b:\n"
-		   "a: ");
+		"a: ");
 	scanf("%d", &a);
 	do
 	{
@@ -142,7 +143,7 @@ int ab_range(int a, int b) // function to simplify the problem in ex 2
  a - low limit input
  b - high limit input
  */
-	int range = (a + b) / 2, num = 0, sum_a=0, sum_b=0;
+	int range = (a + b) / 2, num = 0, sum_a = 0, sum_b = 0;
 	/*
 	range - the middle between a and b
 	num - value to get input of numbers from the user
@@ -159,14 +160,14 @@ int ab_range(int a, int b) // function to simplify the problem in ex 2
 			sum_a += num;
 		scanf("%d", &num);
 	}
-	return sum_b-sum_a; //return the diff between sum_a and sum_b
+	return sum_b - sum_a; //return the diff between sum_a and sum_b
 }
 
 ///////////////////////////////////////////////////////////////
 
 void h2_ex3()
 {
-	int lines,i;
+	int lines, i;
 	/*
 	lines - the number of lines in pascal peramid to print
 	i - index
@@ -179,9 +180,9 @@ void h2_ex3()
 			printf("Enter a positive number: ");
 	} while (lines < 1);// make sure the user entered a positive number
 
-	for (i = 0;i <= lines-1;i++)
+	for (i = 0;i <= lines - 1;i++)
 	{
-		print_space(lines-i);//function to print space acording to the line is printed
+		print_space(lines - i);//function to print space acording to the line is printed
 		print_pascal_line(i);//function to print all the members of the line acording to the line is printed
 		printf("\n");
 	}
@@ -192,7 +193,7 @@ void h2_ex3()
 
 void print_pascal_line(int n)//function to print a N line in pascal peramid
 {
-	int pos=1, k,i;
+	int pos = 1, k, i;
 	/*
 	pos - the value of a number in k position in N line in pascal peramid
 	k - the position of a number in N line in pascal permaid
@@ -201,10 +202,10 @@ void print_pascal_line(int n)//function to print a N line in pascal peramid
 	printf("%d  ", pos);
 	if (n == 0)// print 1 if the line is 0
 		return 1;
-	
-	for (k = n, i=1;k > 0;k--,i++)// loop to print all the members of N line
+
+	for (k = n, i = 1;k > 0;k--, i++)// loop to print all the members of N line
 	{
-		pos = (pos*k)/i;//acording to the formula that in each row the ratio between two folowing numbers is k+i=line number, at first position i=1 and k=line number, each position the i++ and the k--
+		pos = (pos*k) / i;//acording to the formula that in each row the ratio between two folowing numbers is k+i=line number, at first position i=1 and k=line number, each position the i++ and the k--
 		printf("%d  ", pos);
 	}
 }
@@ -221,7 +222,7 @@ void print_space(int line)// function to print a space in a N line in pasca pera
 
 void h2_ex4()
 {
-	int num=1,i=0,lim=0, flag=0;
+	int num = 1, i = 0, lim = 0, flag = 0;
 	/*
 	num - number to find all the betrohed numbers below it
 	i - index
@@ -242,7 +243,7 @@ void h2_ex4()
 		if (flag < i);//if the index number has no betrohed or if the betrohed number that is found smaller than the number that was checked then do nothing and keep checking
 		else
 			lim = printf("The betrohed number of %d is %d\n", i, flag);// if betrohed number is found then print it
-			//lim will change is value to 1 if at least one betrohed number is founf
+																	   //lim will change is value to 1 if at least one betrohed number is founf
 		i--;
 	} while (i >0);//loop to check all the numbers below num
 	if (!lim)
@@ -251,29 +252,61 @@ void h2_ex4()
 	system("pause");
 }
 
-///////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////
 
 int dev_sum(int num)//function to calculate the sum of the whole deviders of a N number
 
 {
-	int sum=1, i;
+	int i, limit, sq, sum = 1;
+	double s, n = num;
 	/*
-	sum - to be returned
 	i - index
+	limit - the condition how many numbers to che for devisor
+	sq - the root of the input number rounded up/down
+	sum - the sum of whole devisors of num
+	
+	s - the square root of the input number
+	n - input number in 'double' format for using in sqrt() function
 	*/
-	for (i = 2;i<(num/2)+1;i++)//loop to calculate the sum of all whole deviders of num
-		if (num%i==0)
-			sum += i;
-	return sum;
+	if (num == 1) //if the input number is 1 then the only divisor is 1, return it
+		return 1;
+	s = sqrt(n);//square root of the input number
+	sq = round_num(s);// square root of the input number rounded up/down using function round_num
+
+	if (num == sq*sq)// if the squre root of the input is a whole number the its one of the devisors and there is one less number needed to be checked
+	{
+		sum += sq;
+		limit = sq - 1;
+	}
+	else//otherwise check the numbers up to the rounded suare root of the input
+		limit = (int)(s);
+	for (i = 2;i <= limit;i++)//check all the numbers starting with 2 until the limit that was set by the previous condition
+		if (num%i == 0)//if the number devides the input without leftover the add it to the sum and ad the number that it devides the input to
+			sum += i + num / i;
+	return sum;//return the sum of whole devisors
+}
+
+///////////////////////////////////////////////////////////////
+
+int round_num(double n)//function to return the round (up/down) of a number
+{
+	int whole = (int)n;//whole - the whole value of a double
+	double temp;//temp - value to check the leftover
+
+	temp = (n - whole) * 10;//calculate the left over and miltiply it by 10 so it will become a number between 0 to 9
+	if (temp >= 5)//if the leftover is greater than 0.5 then round the number up and return the rounded value
+		return whole + 1;
+	else
+		return whole;//if the leftover is smaller than 0.5 then round the number down and return the rounded value
 }
 
 ///////////////////////////////////////////////////////////////
 
 int betro(int num1)// function to check if a number have a betrohed number
 {//input num1
-	int num2 = dev_sum(num1)-1;
+	int num2 = dev_sum(num1) - 1;
 	//num2 - the sum of all whole deviders of num1 -1
-	if (dev_sum(num2)-1 == num1)//if the sum of whole deviders of num2 -1 is equal to num1 then return the value of num2
+	if (dev_sum(num2) - 1 == num1)//if the sum of whole deviders of num2 -1 is equal to num1 then return the value of num2
 		return num2;
 	else// otherwise return 0
 		return 0;
@@ -305,7 +338,7 @@ void h2_ex5()
 
 double new_rap(double x, double n) // function to calculate the root of a number using Newton-Raphsin method
 {
-	double temp,ret;
+	double temp, ret;
 	/*
 	ret - the current value of x according to the recursive formula: xi+1=(xi-(((xi)^2)-n)/2xi)
 	temp - the value of [xi-(xi-1)]

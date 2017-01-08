@@ -196,7 +196,7 @@ int lab9_ex_4()
 	{
 		size = arr_size();
 		if (size < 2)
-			printf("You must eter 2 or higher, try again\n");
+			printf("You must enter 2 or higher, try again\n");
 	} while (size < 2);
 	
 	arr = (int*)malloc(size * sizeof(int));

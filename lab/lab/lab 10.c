@@ -3,10 +3,13 @@
 #include <string.h>
 #include <math.h>
 
+typedef char* verylong;
+
 int lab10_ex_1();
 char com_ch(char *);
 
 int lab10_ex_2();
+verylong ch_sum(verylong *, verylong *);
 
 
 int lab10()
@@ -100,8 +103,23 @@ char com_ch(char *str)
 
 int lab10_ex_2()
 {
+	verylong a[50], b[50];
+	printf("Enter a number: ");
+	scanf("%s", a);
+	printf("Enter a number: ");
+	scanf("%s", b);
+
+	printf("%c + %c = %c", a, b, ch_sum(a,b));
 
 	printf("\n");
 	system("pause");
 	return lab10();
+}
+
+/////////////////////////////////////////////////////////////////////
+
+verylong ch_sum(verylong *a, verylong *b)
+{
+	verylong ret;
+
 }
