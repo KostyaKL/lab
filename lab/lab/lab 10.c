@@ -9,7 +9,7 @@ int lab10_ex_1();
 char com_ch(char *);
 
 int lab10_ex_2();
-verylong ch_sum(verylong *, verylong *);
+void ch_sum(char *, char *);
 
 
 int lab10()
@@ -64,7 +64,7 @@ int lab10()
 
 int lab10_ex_1()
 {
-	char str[100] = { 0 };
+	char str[30] = { 0 };
 	printf("Enter your string: ");
 	scanf("%s", str);
 
@@ -103,14 +103,20 @@ char com_ch(char *str)
 
 int lab10_ex_2()
 {
-	verylong a[50], b[50];
+	char a[30] = { 0 }, b[30] = { 0 }, *sum;
 	printf("Enter a number: ");
 	scanf("%s", a);
 	printf("Enter a number: ");
 	scanf("%s", b);
 
-	printf("%c + %c = %c", a, b, ch_sum(a,b));
+	//sum = (char*)calloc(30, sizeof(char));
+	ch_sum(a, b);
+	printf("%s", a);
+	//sum = (char*)realloc(a, strlen(a)*sizeof(char));
+	//printf("%s", sum);
 
+
+	//free(sum);
 	printf("\n");
 	system("pause");
 	return lab10();
@@ -118,8 +124,36 @@ int lab10_ex_2()
 
 /////////////////////////////////////////////////////////////////////
 
-verylong ch_sum(verylong *a, verylong *b)
-{
-	verylong ret;
+void ch_sum(char *a, char *b)
+{//48-57
+	
+	int ret1=0,ret2=0;
+	int *a1, *a2, s1, s2;
+	int i;
+	s1 = strlen(a);
+	s2 = strlen(b);
+	a1 = (int*)calloc(s1, sizeof(int));
+	a2 = (int*)calloc(s2, sizeof(int));
 
+	for (i = 0;i < s1;i++)
+		*(a1 + i) = (*(a + i)-48);
+	for (i = 0;i < s2;i++)
+		*(a2 + i) = (*(b + i)-48);
+
+	for (i = 0;i < s1;i++)
+		ret1 = ret1 * 10 + *(a1 + i);
+	printf("\n");
+	for (i = 0;i < s2;i++)
+		ret2 = ret2 * 10 + *(a2 + i);
+	
+	ret1 += ret2;
+	ret2 = 0;
+	for (i = 0;ret1 > 0;i++, ret1 /= 10)
+		ret2 = ret2 * 10 + ret1 % 10;
+
+	for (i = 0;ret2 > 0;ret2 /= 10, i++)
+		*(a + i) = (ret2 % 10)+48;
+
+	free(a1);
+	free(a2);
 }
