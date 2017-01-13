@@ -103,20 +103,31 @@ char com_ch(char *str)
 
 int lab10_ex_2()
 {
-	char a[30] = { 0 }, b[30] = { 0 }, *sum;
+	char a[30] = { 0 }, b[30] = { 0 }, *sum,size,i;
 	printf("Enter a number: ");
 	scanf("%s", a);
 	printf("Enter a number: ");
 	scanf("%s", b);
 
-	//sum = (char*)calloc(30, sizeof(char));
+	
 	ch_sum(a, b);
-	printf("%s", a);
-	//sum = (char*)realloc(a, strlen(a)*sizeof(char));
-	//printf("%s", sum);
+	size = strlen(a);
+	sum = (char*)calloc(size, sizeof(char));
 
+	printf("%d", size);
+	printf("\n");
 
-	//free(sum);
+	for(i=0;i<10;i++)
+	printf("%d", *(sum + i));
+	printf("\n");
+
+	for (i = 0;i < size;i++)
+		*(sum + i) = *(a + i);
+
+	printf("%s", sum);
+	
+
+	free(sum);
 	printf("\n");
 	system("pause");
 	return lab10();
@@ -153,6 +164,7 @@ void ch_sum(char *a, char *b)
 
 	for (i = 0;ret2 > 0;ret2 /= 10, i++)
 		*(a + i) = (ret2 % 10)+48;
+	*(a + i+1) = 0;
 
 	free(a1);
 	free(a2);
