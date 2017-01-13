@@ -6,6 +6,8 @@
 
 
 int lab11_ex_1();
+int no_mem(int*, int);
+
 
 int lab11_ex_1_r();
 
@@ -72,9 +74,59 @@ int lab11()
 
 int lab11_ex_1()
 {
+	int *a, s,n,i;
+	printf("Enter the size of the array: ");
+	do
+	{
+		scanf("%d", &s);
+		if (s < 0)
+			printf("Enter a positive number\n");
+	} while (s < 0);
+
+	a = (int*)calloc(s, sizeof(int));
+
+	printf("Enter the number of '1' you want in the array: ");
+	do
+	{
+		scanf("%d", &n);
+		if (n < 0)
+			printf("Enter a positive number\n");
+	} while (n < 0);
+
+	for (;n > 0;n--)
+		*(a + n - 1) = 1;
+
+	for (i = 0;i < s;i++)
+		printf("%d ", *(a + i));
+	printf("\n");
+	printf("The number of members in the array is: %d\n", no_mem(a, s));
+
+	free(a);
 	printf("\n");
 	system("pause");
 	return lab11();
+}
+
+//////////////////////////////////////////////////////////////////
+
+int no_mem(int *a, int s)
+{
+	int low=0, hi=s-1,mid;
+		while (low <= hi)
+	{
+			mid = (low + hi) / 2;
+		if (*(a + mid) == 0)
+			if (*(a + mid - 1) == 1)
+				return mid;
+			else
+				hi = mid - 1;
+		else
+			if (*(a + mid + 1) == 0)
+				return mid+1;
+			else
+				low = mid + 1;
+	}
+	return -1;
 }
 
 //////////////////////////////////////////////////////////////////
