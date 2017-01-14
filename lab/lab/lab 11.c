@@ -12,6 +12,7 @@ int no_mem(int*, int);
 int lab11_ex_1_r();
 
 int lab11_ex_2();
+void letsort(char *);
 
 
 
@@ -142,11 +143,37 @@ int lab11_ex_1_r()
 
 int lab11_ex_2()
 {
-	
+	char str[30] = { 0 };
+	printf("Enter your string: ");
+	scanf("%s", str);
+	letsort(str);
+	printf("%s - sorted\n", str);
+
 	printf("\n");
 	system("pause");
 	return lab11();
 }
 
 /////////////////////////////////////////////////////////////////////
+
+void letsort(char *a)
+{
+	int s,*ord,i;
+	s = strlen(a);
+	ord = (int*)calloc(26, sizeof(int));
+
+	for (i = 0;i < s;i++)
+		*(ord + *(a + i) - 97) += 1;
+
+	for (i = 25;i >= 0;i--)
+		while (*(ord + i) > 0)
+		{
+			*(a + s-1) =i + 97;
+			s--;
+			*(ord + i) -= 1;
+		} 
+	free(ord);
+}
+
+////////////////////////////////////////////////////////////////////
 
