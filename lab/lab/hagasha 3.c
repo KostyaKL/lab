@@ -12,6 +12,7 @@ void h3_ex1(); //function for excercise 1
 void sort_even_odd(int*, int);
 
 void h3_ex2(); //function for excercise 2
+int num_parts_sum(int);
 
 void h3_ex3(); //function for excercise 3
 
@@ -20,8 +21,8 @@ void h3_ex4(); //function for excercise 4
 void h3_ex5(); //function for excercise 5
 
 int* input_arry_dyn(int*); // function to define an array, its size and its members
-
 void swaper(int*, int*);
+int abso(int);
 
 
 
@@ -101,9 +102,44 @@ void sort_even_odd(int*a, int s)
 
 void h3_ex2()
 {
+	int num,_11_div;
+	printf("Enter a positive integer: ");
+	do
+	{
+		scanf("%d", &num);
+		if(num<0)
+			printf("Enter a positive integer: ");
+	} while (num < 0);
+
+	_11_div = num_parts_sum(num);
+	_11_div = abso(_11_div);
+	printf("The sum of %d parts is %d\n", num, _11_div);
+
+	while (_11_div / 10 > 0)
+	{
+		_11_div = num_parts_sum(_11_div);
+		_11_div = abso(_11_div);
+	}
+	if (_11_div)
+		printf("%d is NOT devidable by 11\n", num);
+	else
+		printf("%d is devidable by 11\n",num);
 
 	printf("\n");
 	system("pause");
+}
+
+///////////////////////////////////////////////////////////////
+int num_parts_sum(int num)
+{
+	int dig1, dig2;
+	if (num / 10 == 0)
+		return num;
+	if (num / 100 == 0)
+		return num % 10 - num / 10;
+	dig1 = num % 10;
+	dig2 = (num / 10) % 10;
+	return num_parts_sum(num / 100) + dig1 - dig2;
 }
 
 ///////////////////////////////////////////////////////////////
@@ -160,4 +196,14 @@ void swaper(int*a, int*b)
 	int temp = *a;
 	*a = *b;
 	*b = temp;
+}
+
+////////////////////////////////////////////////////////////////
+
+int abso(int a) //function to return an absolut value of a number
+{
+	if (a >= 0)//if the number is positive return the number
+		return a;
+	else
+		return a*(-1);//if the number is negative, turn it to positive by multipling by -1 and return the positive number
 }
