@@ -9,6 +9,7 @@ Student 2: Kostya Lokshin ID:310765821
 #include <math.h>
 //declaration of functions:
 void h3_ex1(); //function for excercise 1
+void sort_even_odd(int*, int);
 
 void h3_ex2(); //function for excercise 2
 
@@ -18,6 +19,9 @@ void h3_ex4(); //function for excercise 4
 
 void h3_ex5(); //function for excercise 5
 
+int* input_arry_dyn(int*); // function to define an array, its size and its members
+
+void swaper(int*, int*);
 
 
 
@@ -65,9 +69,32 @@ int hagasha_3()
 
 void h3_ex1()
 {
-	
+	int *arr,size,i;
+	arr=input_arry_dyn(&size);
+	sort_even_odd(arr, size);
+
+	for (i = 0;i < size;i++)
+		printf("%d, ", *(arr + i));
+
+	free(arr);
 	printf("\n");
 	system("pause");
+}
+
+///////////////////////////////////////////////////////////////
+
+void sort_even_odd(int*a, int s)
+{
+	int first = 0, last = s - 1,i=0;
+
+	for (i = 0;i < s;i++)
+	{
+		if (*(a + i) % 2)
+		{
+			swaper(a + i, a + first);
+			first++;
+		}
+	}
 }
 
 ///////////////////////////////////////////////////////////////
@@ -107,3 +134,30 @@ void h3_ex5()
 }
 
 ///////////////////////////////////////////////////////////////
+
+int* input_arry_dyn(int *s)
+{
+	int *a,i;
+	printf("Enter the size of your array: ");
+	do
+	{
+		scanf("%d", s);
+		if (*s < 1)
+			printf("Enter a number bigger than 1\n");
+	} while (*s < 1);
+	a = (int*)malloc(*s * sizeof(int));
+
+	printf("Enter %d numbers:\n", *s);
+	for (i = 0;i < *s;i++)
+		scanf("%d", (a + i));
+	return a;
+}
+
+////////////////////////////////////////////////////////////////
+
+void swaper(int*a, int*b)
+{
+	int temp = *a;
+	*a = *b;
+	*b = temp;
+}
