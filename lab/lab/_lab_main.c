@@ -28,7 +28,9 @@ int main()
 		   "\n"
 
 		   "3.1 - Hagasha 1\n"
-		   "3.2 - Hagasha 2\n\n"
+		   "3.2 - Hagasha 2\n"
+		   "3.3 - Hagasha 2\n"
+		   "\n"
 
 		   "4 - Ascii\n"
 		   "5 - Test\n"
@@ -131,6 +133,12 @@ int main()
 	{
 		printf("\n");
 		hagasha_2();
+	}
+
+	else if (strcmp(lab_name, "3.3") == 0)
+	{
+		printf("\n");
+		hagasha_3();
 	}
 
 	else if (strcmp(lab_name, "quit") == 0 || strcmp(lab_name, "0") == 0)
