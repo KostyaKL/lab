@@ -21,12 +21,15 @@ int* mrg_arr(int*, int*, int, int,int*);
 
 void h3_ex4(); //function for excercise 4
 int arr_common(int*, int*, int, int, int);
+int arr_common_r(int*, int*, int, int, int);
 int b_srch(int*, int, int);
 
 void h3_ex5(); //function for excercise 5
+void rmv_chr(char*, char);
 
 int* input_arry_dyn(int*); // function to define an array, its size and its members
 void swaper(int*, int*);
+void ch_swaper(char*, char*);
 int abso(int);
 
 
@@ -240,17 +243,29 @@ int part(int*a, int left, int right)
 
 void h3_ex4()
 {
-	int *arr_a, *arr_b, size_a, size_b, size_common, com_arr, i;
+	int *arr_a, *arr_b, size_a, size_b, size_common, com_arr,com_arr_r, i;
 	arr_a = input_arry_dyn(&size_a);
 	arr_b = input_arry_dyn(&size_b);
+
 	size_common = size_b;
 	if (size_b > size_a)
 		size_common = size_a;
+
+	q_srt(arr_a, 0, size_a - 1);
+
 	com_arr = arr_common(arr_a, arr_b, size_a, size_b, size_common);
+
 	if (com_arr)
 		printf("Array B is part of array A\n");
 	else
 		printf("Array B is NOT part of array A\n");
+
+	com_arr_r = arr_common_r(arr_a, arr_b, size_a, size_b, size_common);
+
+	if (com_arr_r)
+		printf("Array B is part of array A - recursion\n");
+	else
+		printf("Array B is NOT part of array A - recursion\n");
 	
 	printf("\n");
 	system("pause");
@@ -263,12 +278,27 @@ int arr_common(int *a, int *b, int s_a, int s_b, int s_c)
 	int i,key,flag=1;
 	if (s_c > s_a)
 		return 0;
+
 	for (i = 0;i < s_c && flag == 1;i++)
 	{
 		key = *(b + i);
 		flag = b_srch(a, s_a, key);
 	}
 	return flag;
+}
+
+///////////////////////////////////////////////////////////////
+
+int arr_common_r(int *a, int *b, int s_a, int s_b, int s_c)
+{
+	int i, key, flag = 1;
+	if (s_c > s_a)
+		return 0;
+
+	if (s_c == 0)
+		return b_srch(a, s_a, *b);
+
+	return arr_common_r(a, b, s_a, s_b, s_c-1) * b_srch(a, s_a, *(b + s_c - 1));
 }
 
 ///////////////////////////////////////////////////////////////
@@ -293,11 +323,17 @@ int b_srch(int *a, int s, int k)
 
 void h3_ex5()
 {
-	char str[30] = { 0 }, key;
+	char str[100] = { 0 }, key;
 	printf("Enter your string: ");
 	scanf("%s", str);
+	
 	printf("Enter the letter you want to remove from the string: ");
-	scanf("%s", &key);
+	flushall();
+	scanf(" %c", &key);
+
+	rmv_chr(str, key);
+
+	printf("%s\n", str);
 
 
 
@@ -307,15 +343,15 @@ void h3_ex5()
 
 ///////////////////////////////////////////////////////////////
 
-void rmv_chr(char *str, int key)
+void rmv_chr(char *str, char key)
 {
 	int i,j,size,count=0;
-	size = sizeof(str) / sizeof(char);
-	for (i = 0;i < size;i++)
+	size = strlen(str);
+	for (i = size-1;i >=0;i--)
 		if (*(str + i) == key)
 		{
-			for (j = i;j < size;j++)
-				swaper(str + j, str + j + 1);
+			for (j = i;j < size-1;j++)
+				ch_swaper(str + j, str + j + 1);
 			count++;
 		}
 	for (i = size - count;i < size;i++)
@@ -347,6 +383,15 @@ int* input_arry_dyn(int *s)
 void swaper(int*a, int*b)
 {
 	int temp = *a;
+	*a = *b;
+	*b = temp;
+}
+
+////////////////////////////////////////////////////////////////
+
+void ch_swaper(char *a, char*b)
+{
+	char temp = *a;
 	*a = *b;
 	*b = temp;
 }
