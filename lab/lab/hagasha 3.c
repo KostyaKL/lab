@@ -15,8 +15,13 @@ void h3_ex2(); //function for excercise 2
 int num_parts_sum(int);
 
 void h3_ex3(); //function for excercise 3
+int part(int*, int, int);
+void q_srt(int*, int, int);
+int* mrg_arr(int*, int*, int, int,int*);
 
 void h3_ex4(); //function for excercise 4
+int arr_common(int*, int*, int, int, int);
+int b_srch(int*, int, int);
 
 void h3_ex5(); //function for excercise 5
 
@@ -146,15 +151,155 @@ int num_parts_sum(int num)
 
 void h3_ex3()
 {
+	int *arr_a,*arr_b, size_a,size_b,*arr_mrg,size_mrg,i,soi;
+	arr_a = input_arry_dyn(&size_a);
+	arr_b = input_arry_dyn(&size_b);
 
+	srand(time(NULL));
+
+	arr_mrg = mrg_arr(arr_a, arr_b, size_a, size_b,&size_mrg);
+	
+	for (i = 0;i < size_mrg;i++)
+		printf("%d, ", *(arr_mrg + i));
+	printf("\nIs an array of %d members\n", size_mrg);
+
+	free(arr_a);
+	free(arr_b);
+	free(arr_mrg);
 	printf("\n");
 	system("pause");
+}
+
+///////////////////////////////////////////////////////////////
+
+int* mrg_arr(int*a, int*b, int n, int m,int *ret_size)
+{
+	int *mrg, size = n, i = 0, j = 0,k = 0;
+	if (m < n)
+		size = m;
+	mrg = (int*)malloc(size * sizeof(int));
+	q_srt(a, 0, n - 1);
+	q_srt(b, 0, m - 1);
+
+	while (i < n && j < m)
+		if (*(a + i) < *(b + j))
+			i++;
+		else if (*(a + i) > *(b + j))
+			j++;
+		else if (*(a + i) == *(b + j))
+		{
+			*(mrg + k) = *(a + i);
+			i++;
+			j++;
+			k++;
+		}
+	mrg = (int*)realloc(mrg, k * sizeof(int));
+	*ret_size = k;
+	return mrg;
+}
+
+///////////////////////////////////////////////////////////////
+
+void q_srt(int*a, int first, int last)
+{
+	int pos;
+	if (first < last)
+	{
+		pos = part(a, first, last);
+		q_srt(a, first, pos - 1);
+		q_srt(a, pos + 1, last);
+	}
+
+}
+
+///////////////////////////////////////////////////////////////
+
+int part(int*a, int left, int right)
+{
+	int first = left, pivot, pos;
+	pos = rand() % (right - left + 1) + left;
+	swaper(a + first, a + pos);
+	pivot = *(a + first);
+
+	while (left < right)
+	{
+		while (*(a + right) > pivot)
+			right--;
+		while ((left < right) && *(a + left) <= pivot)
+			left++;
+		if (left < right)
+			swap(a + left, a + right);
+	}
+	pos = right;
+	*(a + first) = *(a + pos);
+	*(a + pos) = pivot;
+	return pos;
 }
 
 ///////////////////////////////////////////////////////////////
 
 void h3_ex4()
 {
+	int *arr_a, *arr_b, size_a, size_b, size_common, com_arr, i;
+	arr_a = input_arry_dyn(&size_a);
+	arr_b = input_arry_dyn(&size_b);
+	size_common = size_b;
+	if (size_b > size_a)
+		size_common = size_a;
+	com_arr = arr_common(arr_a, arr_b, size_a, size_b, size_common);
+	if (com_arr)
+		printf("Array B is part of array A\n");
+	else
+		printf("Array B is NOT part of array A\n");
+	
+	printf("\n");
+	system("pause");
+}
+
+///////////////////////////////////////////////////////////////
+
+int arr_common(int *a, int *b, int s_a, int s_b, int s_c)
+{
+	int i,key,flag=1;
+	if (s_c > s_a)
+		return 0;
+	for (i = 0;i < s_c && flag == 1;i++)
+	{
+		key = *(b + i);
+		flag = b_srch(a, s_a, key);
+	}
+	return flag;
+}
+
+///////////////////////////////////////////////////////////////
+
+int b_srch(int *a, int s, int k)
+{
+	int i,first=0,last=s-1,mid;
+	while (first <= last)
+	{
+		mid = (first + last) / 2;
+		if (*(a + mid) == k)
+			return 1;
+		if (k < *(a + mid))
+			last = mid-1;
+		else if (k > *(a + mid))
+			first = mid+1;
+	}
+	return 0;
+}
+
+///////////////////////////////////////////////////////////////
+
+void h3_ex5()
+{
+	char str[30] = { 0 }, key;
+	printf("Enter your string: ");
+	scanf("%s", str);
+	printf("Enter the letter you want to remove from the string: ");
+	scanf("%s", &key);
+
+
 
 	printf("\n");
 	system("pause");
@@ -162,11 +307,19 @@ void h3_ex4()
 
 ///////////////////////////////////////////////////////////////
 
-void h3_ex5()
+void rmv_chr(char *str, int key)
 {
-
-	printf("\n");
-	system("pause");
+	int i,j,size,count=0;
+	size = sizeof(str) / sizeof(char);
+	for (i = 0;i < size;i++)
+		if (*(str + i) == key)
+		{
+			for (j = i;j < size;j++)
+				swaper(str + j, str + j + 1);
+			count++;
+		}
+	for (i = size - count;i < size;i++)
+		*(str + i) = 0;
 }
 
 ///////////////////////////////////////////////////////////////
