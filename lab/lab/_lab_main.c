@@ -20,6 +20,8 @@ int main()
 		   "1.9 - Lab9\n"
 		   "1.10 - Lab10\n"
 		   "1.11 - lab11\n"
+		   "1.12 - lab12\n"
+		   "1.13 - lab13\n"
 		   "\n"
 
 		   "2.1 - Self Train 1\n"
@@ -103,6 +105,18 @@ int main()
 	{
 		printf("\n");
 		lab11();
+	}
+
+	else if (strcmp(lab_name, "1.12") == 0)
+	{
+		printf("\n");
+		lab12();
+	}
+
+	else if (strcmp(lab_name, "1.13") == 0)
+	{
+		printf("\n");
+		lab13();
 	}
 
 	else if (strcmp(lab_name, "2.1") == 0)

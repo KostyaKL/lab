@@ -69,5 +69,11 @@
     <ClCompile Include="hagasha 3.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="lab 12.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lab 13.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

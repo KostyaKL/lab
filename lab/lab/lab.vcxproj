@@ -24,6 +24,8 @@
     <ClCompile Include="hagasha 3.c" />
     <ClCompile Include="lab 10.c" />
     <ClCompile Include="lab 11.c" />
+    <ClCompile Include="lab 12.c" />
+    <ClCompile Include="lab 13.c" />
     <ClCompile Include="lab 5.c" />
     <ClCompile Include="lab 6.c" />
     <ClCompile Include="lab 7.c" />
