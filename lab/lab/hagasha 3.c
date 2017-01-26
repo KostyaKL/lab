@@ -314,7 +314,7 @@ last - the index of the last number in the array
 
 void h3_ex4()
 {
-	int *arr_a, *arr_b, size_a, size_b, com_arr,com_arr_r, com_arr_100;
+	int *arr_a, *arr_b, size_a, size_b, com_arr,com_arr_r, com_arr_100, select = 0;
 	/*
 	arr_a - pointer to array a
 	arr_b - pointer to array b
@@ -323,6 +323,7 @@ void h3_ex4()
 	com_arr - a flag to descide if array b is part of array a
 	com_arr_r - a flag to descide if array b is part of array a using a recursion
 	com_arr_100 - a flag to descide if array b is part of array a while the members of the arrays are 1-100
+	select - menu option to selecet in which method to solve the problem
 	*/
 	printf("Enter 2 arrays of the same size!!!\n");
 	arr_a = input_array_dyn(&size_a);//get an input for array a by the user using input_array_dyn() function
@@ -333,28 +334,47 @@ void h3_ex4()
 			printf("The second array must be the same size as the first, try again\n");
 	} while (size_b != size_a);//make sure both arrays the same size
 	
+	printf("\nChoose how you want to solve the problem\n"
+		"1 - O(nlogn) loop\n"
+		"2 - Recursion\n"
+		"3 - O(n) while the members of the arrays are 1-100\n\n");
+	do
+	{
+		scanf("%d", &select);
+		if (select < 0 || select > 3)
+			printf("\nChoose how you want to solve the problem\n"
+				"1 - O(nlogn) loop\n"
+				"2 - Recursion\n"
+				"3 - O(n) while the members of the arrays are 1-100\n\n");
+	} while (select < 1 || select > 3);//select the method to how solve the problem
 
-	com_arr = arr_common(arr_a, arr_b, size_a);//check if array b is part of array a
+	switch (select)
+	{
+	case 1://option 1
+		com_arr = arr_common(arr_a, arr_b, size_a);//check if array b is part of array a
 
-	if (com_arr)//print the outcome
-		printf("Array B is part of array A\n");
-	else
-		printf("Array B is NOT part of array A\n");
+		if (com_arr)//print the outcome
+			printf("Array B is part of array A\n");
+		else
+			printf("Array B is NOT part of array A\n");
+		break;
+	case 2://option 2
+		com_arr_r = arr_common_r(arr_a, arr_b, size_a);//check if array b is part of array a using a recursion function
 
-	com_arr_r = arr_common_r(arr_a, arr_b, size_a);//check if array b is part of array a using a recursion function
+		if (com_arr_r)//print the outcome of the recursion function
+			printf("Array B is part of array A - recursion\n");
+		else
+			printf("Array B is NOT part of array A - recursion\n");
+		break;
+	case 3://option 3
+		com_arr_100 = arr_common_100(arr_a, arr_b, size_a);//check if array b is part of array a while the members of the arrays are 1-100
 
-	if (com_arr_r)//print the outcome of the recursion function
-		printf("Array B is part of array A - recursion\n");
-	else
-		printf("Array B is NOT part of array A - recursion\n");
-
-	com_arr_100 = arr_common_100(arr_a, arr_b, size_a);//check if array b is part of array a while the members of the arrays are 1-100
-	
-	if (com_arr_100)//print the outcome of the function while the members of the arrays are 1-100
-		printf("Array B is part of array A - while the members of the arrays are 1-100\n");
-	else
-		printf("Array B is NOT part of array A - while the members of the arrays are 1-100\n");
-
+		if (com_arr_100)//print the outcome of the function while the members of the arrays are 1-100
+			printf("Array B is part of array A - while the members of the arrays are 1-100\n");
+		else
+			printf("Array B is NOT part of array A - while the members of the arrays are 1-100\n");
+		break;
+	}
 	free(arr_a);//free the memorry that was allocated for array a
 	free(arr_b);//free the memorry that was allocated for array b
 	printf("\n");
