@@ -73,6 +73,75 @@ int misc1()
 
 int misc2()
 {
+//	
+//		int* scan_arr(int);
+//	int* ZUGI_partition(int *, int);
+//	void swap(int *, int *);
+//	void print_arr(int *, int);
+//
+//
+//	void main()
+//	{
+//		int *arr, size;
+//		printf("Enter size of array: ");
+//		do
+//		{
+//			scanf("%d", &size);
+//			if (size < 1)
+//				printf("Please enter positive size");
+//		} while (size < 1);
+//
+//		arr = scan_arr(size);
+//
+//		arr = ZUGI_partition(arr, size);
+//
+//		printf("The new array is: ");
+//		print_arr(arr, size);
+//
+//		free(arr);
+//	}
+//
+//
+//	int* scan_arr(int size_arr)
+//	{
+//		int *arr, i;
+//		arr = (int*)malloc(size_arr * sizeof(int));
+//		printf("Enter an array of %d numbers: \n", size_arr);
+//		for (i = 0; i<size_arr; i++)
+//			scanf("%d", arr + i);
+//		return arr;
+//	}
+//
+//
+//	void ZUGI_partition(int *a, int size)
+//	{
+//		int left = 0, right = size - 1;
+//		while (left<right)
+//		{
+//			while (a[left] % 2 == 1)
+//				left++;
+//			while ((left<right) && (a[right] % 2 == 0))
+//				right--;
+//			if (left<right)
+//				swap(a + left, a + right);
+//		}
+//	}
+//
+//
+//	void swap(int *n1, int *n2)
+//	{
+//		int n3 = *n1;
+//		*n1 = *n2;
+//		*n2 = n3;
+//	}
+//
+//
+//	void print_arr(int *arr, int size_arr)
+//	{
+//		int i;
+//		for (i = 0; i<size_arr; i++)
+//			printf("%d  ", arr[i]);
+//	}
 
 	printf("\n");
 	system("pause");

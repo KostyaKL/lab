@@ -438,6 +438,7 @@ void h3_ex5()
 	str = input_str_dyn();
 	
 	printf("Enter the letter you want to remove from the string: ");
+	flushall();
 	scanf(" %c", &key);
 
 	remove_char(str, key);
@@ -446,6 +447,7 @@ void h3_ex5()
 
 
 	free(str);
+	flushall();
 	printf("\n");
 	system("pause");
 }
@@ -470,49 +472,40 @@ void remove_char(char *str, char ch)
 
 ///////////////////////////////////////////////////////////////
 
-int* input_array_dyn(int *size) // function to define an array, its size and its members, returns the size of the array by refrence
-//size - size of an array - to be returned by refrence
+int* input_array_dyn(int *s)
 {
 	int *a,i;
-	/*
-	a - pointer to the array
-	i - index
-	*/
 	printf("Enter the size of your array: ");
 	do
 	{
-		scanf("%d", size);
-		if (*size < 1)
+		scanf("%d", s);
+		if (*s < 1)
 			printf("Enter a number bigger than 1\n");
-	} while (*size < 1);// get the size of an array from the user, make sure its a positive number
-	a = (int*)malloc(*size * sizeof(int));//allocate memorry for the array
+	} while (*s < 1);
+	a = (int*)malloc(*s * sizeof(int));
 
-	printf("Enter %d numbers:\n", *size);
-	for (i = 0;i < *size;i++)//get the input number from the user to fill the array
+	printf("Enter %d numbers:\n", *s);
+	for (i = 0;i < *s;i++)
 		scanf("%d", (a + i));
-	return a;//return the pointer of the array
+	return a;
 }
 
 ////////////////////////////////////////////////////////////////
 
-char* input_str_dyn()// function to get a dynamic input of a string from the user
+char* input_str_dyn()
 {
 	char temp_str[100], *str;
-	/*
-	tmp_str - temporary array of char to get the initial string input from the user
-	str - pointer to the char array that will contain the string from the user to be returned
-	*/
 	printf("Enter your string: ");
 	scanf("%s", temp_str);
-	str = (char*)malloc(strlen(temp_str) * sizeof(char));//allocate memorry for the char array in the size of the input string from the user
-	strcpy(str, temp_str);//copy the string entered from the user from the temporary array to the array that to be returned
-	return str;//return the pointer to the char array containing the user's string
+	str = (char*)malloc(strlen(temp_str) * sizeof(char));
+	strcpy(str, temp_str);
+	return str;
 
 }
 
 ///////////////////////////////////////////////////////////////
 
-void swaper(int*a, int*b)//function to swap the position of two number in an array - by refrence
+void swaper(int*a, int*b)
 {
 	int temp = *a;
 	*a = *b;
@@ -521,7 +514,7 @@ void swaper(int*a, int*b)//function to swap the position of two number in an arr
 
 ////////////////////////////////////////////////////////////////
 
-void ch_swaper(char *a, char*b)//funcrion to swap the position of two chars in a strinf - by refrence
+void ch_swaper(char *a, char*b)
 {
 	char temp = *a;
 	*a = *b;
