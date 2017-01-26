@@ -40,7 +40,7 @@ int abso(int);//function to return the absolute value of an input number
 int hagasha_3()
 {
 	int select = 0, i, all_Ex_in_loop = 0;
-	/*
+	/* 
 	select - value to choose an exercise to display
 	i - index to print the menu
 	all_ex_in_loop - value to choose if the program will return to main menu at the end of an exersice or it will exit
@@ -324,7 +324,7 @@ void h3_ex4()
 	com_arr_r - a flag to descide if array b is part of array a using a recursion
 	com_arr_100 - a flag to descide if array b is part of array a while the members of the arrays are 1-100
 	*/
-	printf("Enter 2 arrays of the same size\n");
+	printf("Enter 2 arrays of the same size!!!\n");
 	arr_a = input_array_dyn(&size_a);//get an input for array a by the user using input_array_dyn() function
 	do
 	{
