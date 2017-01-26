@@ -491,16 +491,19 @@ a - pointer of the array
 size - size of the array
 */
 {
-	int min_index = 0, i;
+	int *low=a,*high=a+size-1;
 	/*
-	min_index - the index of the smallest number in the array - 0 by defult
-	i - index
+	low - pointer to the first number
+	high - pointer to the last number
 	*/
-	for (i = 1;i < size;i++)
-		if (*(a + i) < *(a + min_index))//check if the current number is smaller than the number in min_index location
-			min_index = i;// if so, update the min_index to the current number index
-	return min_index;//return the min_index
-
+	while (low < high)
+	{
+		if (*low < *high)//if the left number is smaller then retreact the right side
+			high--;
+		else//if the right side is smaller then afvance the left side
+			low++;
+	}
+	return low-a;//return the index of the lowest number
 }
 
 ///////////////////////////////////////////////////////////////
@@ -517,9 +520,8 @@ void h3_ex5()
 	printf("Enter the letter you want to remove from the string: ");
 	scanf(" %c", &key);
 	remove_char(str, key);//remove the letter selected from the string
-
+	
 	printf("%s\n", str);
-
 
 	//free(str);
 	printf("\n");
@@ -549,9 +551,9 @@ ch - letter to remove from the string
 				ch_swaper(str + j, str + j + 1);//swap each time until the letter that is found is the last
 			count++;//count how many letters needs to be removed
 		}
-	for (i = size - count;i < size;i++)//zorize letters from the end as many letters that need to be removed
-		*(str + i) = 0;
+	*(str + size - count) = 0;//mark the end of the rearanged string
 	str = (char*)realloc(str, strlen(str) * sizeof(char));//do a memorry reallocation to the string in the correct size after the letter removal
+	*(str + size-count) = 0;
 }
 
 ///////////////////////////////////////////////////////////////
