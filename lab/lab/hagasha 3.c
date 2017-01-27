@@ -112,9 +112,9 @@ void sort_even_odd(int*a, int size) //finction to sort the array into two groups
 	
 	while (first < last)// do as long as the lef index position is smaller than the right index position
 	{
-		while (abso(*(a + first)) % 2 == 1)//advance the left index position as long as the number is odd
+		while (*(a + first) % 2 == 1 || *(a + first) % 2 == -1)//advance the left index position as long as the number is odd
 			first++;
-		while (abso(*(a + last)) % 2 == 0)//retract the right index position as long as the number is even
+		while (*(a + last) % 2 == 0)//retract the right index position as long as the number is even
 			last--;
 		if (first < last)//if the number on the left is even and the number on the right is odd and the index of the left number is smaller from the index of the number on the right
 						 //then swap the two numbers so the even number will be on the right and the odd number on the left
@@ -314,25 +314,23 @@ last - the index of the last number in the array
 
 void h3_ex4()
 {
-	int *arr_a, *arr_b, size_a, size_b, com_arr,com_arr_r, com_arr_100, select = 0;
+	int *arr_a, *arr_b, size, com_arr, com_arr_r, com_arr_100, select = 0, i;
 	/*
 	arr_a - pointer to array a
 	arr_b - pointer to array b
-	size_a - the size of array a - returned by refrence from input_array_dyn() function
-	size_b - the size of array b - returned by refrence from input_array_dyn() function
+	size - the size of array - returned by refrence from input_array_dyn() function
 	com_arr - a flag to descide if array b is part of array a
 	com_arr_r - a flag to descide if array b is part of array a using a recursion
 	com_arr_100 - a flag to descide if array b is part of array a while the members of the arrays are 1-100
 	select - menu option to selecet in which method to solve the problem
+	i - index
 	*/
 	printf("Enter 2 arrays of the same size!!!\n");
-	arr_a = input_array_dyn(&size_a);//get an input for array a by the user using input_array_dyn() function
-	do
-	{
-		arr_b = input_array_dyn(&size_b);//get an input for array b by the user using input_array_dyn() function
-		if (size_b != size_a)
-			printf("The second array must be the same size as the first, try again\n");
-	} while (size_b != size_a);//make sure both arrays the same size
+	arr_a = input_array_dyn(&size);//get an input for array a by the user using input_array_dyn() function
+	arr_b = (int*)malloc(size * sizeof(int));//allocate memorry for array b
+	printf("Enter %d numbers:\n", size);
+	for (i = 0;i < size;i++)//get the input number from the user to fill array b
+		scanf("%d", (arr_b + i));
 	
 	printf("\nChoose how you want to solve the problem\n"
 		"1 - O(nlogn) loop\n"
@@ -351,7 +349,7 @@ void h3_ex4()
 	switch (select)
 	{
 	case 1://option 1
-		com_arr = arr_common(arr_a, arr_b, size_a);//check if array b is part of array a
+		com_arr = arr_common(arr_a, arr_b, size);//check if array b is part of array a
 
 		if (com_arr)//print the outcome
 			printf("Array B is part of array A\n");
@@ -359,7 +357,7 @@ void h3_ex4()
 			printf("Array B is NOT part of array A\n");
 		break;
 	case 2://option 2
-		com_arr_r = arr_common_r(arr_a, arr_b, size_a);//check if array b is part of array a using a recursion function
+		com_arr_r = arr_common_r(arr_a, arr_b, size);//check if array b is part of array a using a recursion function
 
 		if (com_arr_r)//print the outcome of the recursion function
 			printf("Array B is part of array A - recursion\n");
@@ -367,7 +365,7 @@ void h3_ex4()
 			printf("Array B is NOT part of array A - recursion\n");
 		break;
 	case 3://option 3
-		com_arr_100 = arr_common_100(arr_a, arr_b, size_a);//check if array b is part of array a while the members of the arrays are 1-100
+		com_arr_100 = arr_common_100(arr_a, arr_b, size);//check if array b is part of array a while the members of the arrays are 1-100
 
 		if (com_arr_100)//print the outcome of the function while the members of the arrays are 1-100
 			printf("Array B is part of array A - while the members of the arrays are 1-100\n");
