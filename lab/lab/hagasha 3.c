@@ -521,7 +521,9 @@ void h3_ex5()
 	
 	printf("%s\n", str);
 
-	//free(str);
+	str = (char*)realloc(str, strlen(str) * sizeof(char));//do a memorry reallocation to the string in the correct size after the letter removal
+
+	free(str);
 	printf("\n");
 	system("pause");
 }
@@ -550,8 +552,6 @@ ch - letter to remove from the string
 			count++;//count how many letters needs to be removed
 		}
 	*(str + size - count) = 0;//mark the end of the rearanged string
-	str = (char*)realloc(str, strlen(str) * sizeof(char));//do a memorry reallocation to the string in the correct size after the letter removal
-	*(str + size-count) = 0;
 }
 
 ///////////////////////////////////////////////////////////////
