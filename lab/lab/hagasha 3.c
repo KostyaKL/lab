@@ -448,7 +448,7 @@ size - the common size between the two arrays
 	for (i = 0;i < size;i++)//count all the apearences of each number in array b - O(n)
 		*(count_array_b+*(b+i)-1) += 1;
 	for (i = 0;i < 100;i++)// O(100)
-		if (*(count_array_b + i) > *(count_array_a + i))//check that all the apearences of array b are also apearing in array a
+		if (*(count_array_b + i) != *(count_array_a + i))//check that all the apearences of array b are also apearing in array a
 			return 0;//if not return 0
 	return 1;
 }//complexity - O(n+n+100) = O(2n+100) = O(n)
