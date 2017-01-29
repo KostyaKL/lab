@@ -112,7 +112,7 @@ void sort_even_odd(int*a, int size) //finction to sort the array into two groups
 	
 	while (first < last)// do as long as the lef index position is smaller than the right index position
 	{
-		while (*(a + first) % 2 == 1 || *(a + first) % 2 == -1)//advance the left index position as long as the number is odd
+		while (*(a + first) % 2 != 0)//advance the left index position as long as the number is odd
 			first++;
 		while (*(a + last) % 2 == 0)//retract the right index position as long as the number is even
 			last--;
