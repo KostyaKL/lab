@@ -7,6 +7,8 @@ Student 2: Kostya Lokshin ID:310765821
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <string.h>
+#include <time.h>
 //declaration of functions:
 void h3_ex1(); //function for excercise 1
 void sort_even_odd(int*, int);//finction to sort the array into two groups, even and odd numbers
@@ -17,30 +19,28 @@ int num_parts_sum(int);//function to return the sum of number digits while switc
 void h3_ex3(); //function for excercise 3
 int partition(int*, int, int);//function to sort the array arround a pivot number (smaller and bigger than the pivot)
 void quick_sort(int*, int, int);// function to sort an array using partition each time sorting the tails left around the pivot
-int* mrg_arr(int*, int*, int, int,int*);//function to produce a merged array of the same nubmers from two input arrays
+int* mrg_arr(int*, int*, int, int, int*);//function to produce a merged array of the same nubmers from two input arrays
 
 void h3_ex4(); //function for excercise 4
 int arr_common(int*, int*, int);//function to determine if array b is part of array a
 int arr_common_r(int*, int*, int);//function to determine if array b is part of array a using a recursion
 int arr_common_100(int*, int*, int);//function to determine if array b is part of array while the members of the arrays are 1-100
 int binary_search(int*, int, int);//function for binary search for a specific number in an array
-int min_arry(int*a, int size);//function to return the index of the smallest number in the array
+int min_arry(int*a, int);//function to return the index of the smallest number in the array
 
 void h3_ex5(); //function for excercise 5
 void remove_char(char*, char);//function to remove a specific char from a string and return a new modified string whtout the char
 
-int* input_array_dyn(int*); // function to define an array, its size and its members, returns the size of the array by refrence
+int* input_array_dyn(int); // function to define an array, its size and its members, returns the size of the array by refrence
 char* input_str_dyn();// function to get a dynamic input of a string from the user
 void swaper(int*, int*);//function to swap the position of two number in an array - by refrence
 void ch_swaper(char*, char*);//funcrion to swap the position of two chars in a strinf - by refrence
-int abso(int);//function to return the absolute value of an input number
 
 
-
-int hagasha_3()
+void main()
 {
 	int select = 0, i, all_Ex_in_loop = 0;
-	/* 
+	/*
 	select - value to choose an exercise to display
 	i - index to print the menu
 	all_ex_in_loop - value to choose if the program will return to main menu at the end of an exersice or it will exit
@@ -75,20 +75,27 @@ int hagasha_3()
 				break;
 			}
 		} while (all_Ex_in_loop && select); //determin if the program will return to main menu at the end of an exersice or it will exit
-		return main();
 }
 
 ///////////////////////////////////////////////////////////////
 
 void h3_ex1()
 {
-	int *arr,size,i;
+	int *arr, size, i;
 	/*
 	arr - a pointer for an array that will be inputed by the user
-	size - the size of an array that the user will decied ( returned by refrence from input_array_dyn() function
+	size - the size of the array
 	i - index
 	*/
-	arr=input_array_dyn(&size);//get an input of the array by the user using input_array_dyn() function
+	printf("Enter the size of your array: ");
+	do
+	{
+		scanf("%d", &size);
+		if (size < 1)
+			printf("Enter a number bigger than 1\n");
+	} while (size < 1);// get the size of an array from the user, make sure its a positive number
+
+	arr = input_array_dyn(size);//get an input of the array by the user using input_array_dyn() function
 	sort_even_odd(arr, size);//sort the input array into odd and even numbers
 
 	for (i = 0;i < size;i++)
@@ -103,13 +110,13 @@ void h3_ex1()
 
 void sort_even_odd(int*a, int size) //finction to sort the array into two groups, even and odd numbers
 {
-	int first = 0, last = size - 1,i=0;
+	int first = 0, last = size - 1, i = 0;
 	/*
 	first - the index position of the first number in the array
 	last - the index position of the last number in the array
 	i - index
 	*/
-	
+
 	while (first < last)// do as long as the lef index position is smaller than the right index position
 	{
 		while (*(a + first) % 2 != 0)//advance the left index position as long as the number is odd
@@ -131,11 +138,11 @@ void sort_even_odd(int*a, int size) //finction to sort the array into two groups
 	//}
 }// complexitiy - O(n)
 
-///////////////////////////////////////////////////////////////
+ ///////////////////////////////////////////////////////////////
 
 void h3_ex2()
 {
-	int num,_11_div;
+	int num, _11_div;
 	/*
 	num - input number from the user
 	_11_div - parameter to sum the digitis of the number while swaping the sign (+/-)
@@ -144,23 +151,23 @@ void h3_ex2()
 	do
 	{
 		scanf("%d", &num);
-		if(num<0)
+		if (num<0)
 			printf("Enter a positive integer: ");
 	} while (num < 0);//make sure the number is entered by the user is positive
 
 	_11_div = num_parts_sum(num);//calculate the sum of the digitis of the number while swaping the sign (+/-) using num_parts_sum() function
-	_11_div = abso(_11_div);//return the absolute value of the outcome from num_parts_sum() function
+	_11_div = abs(_11_div);//return the absolute value of the outcome from num_parts_sum() function
 	printf("The sum of %d parts is %d\n", num, _11_div);
 
 	while (_11_div / 10 > 0)//apply the num_parts_sum() function untill the sum is 1 digit
 	{
 		_11_div = num_parts_sum(_11_div);
-		_11_div = abso(_11_div);
+		_11_div = abs(_11_div);
 	}
 	if (_11_div)//if the 1 digit sum is diffrent from 0 the the number is not devidable by 11
 		printf("%d is NOT devidable by 11\n", num);
 	else
-		printf("%d is devidable by 11\n",num);//if the 1 digit sum is equal to 0 the the number is devidable by 11
+		printf("%d is devidable by 11\n", num);//if the 1 digit sum is equal to 0 the the number is devidable by 11
 
 	printf("\n");
 	system("pause");
@@ -187,21 +194,38 @@ int num_parts_sum(int num)//function to return the sum of number digits while sw
 
 void h3_ex3()
 {
-	int *arr_a,*arr_b, size_a,size_b,*arr_mrg,size_mrg,i;
+	int *arr_a, *arr_b, size_a, size_b, *arr_mrg, size_mrg, i;
 	/*
 	arr_a - pointer to the first array for the user to input
 	arr_b - pointer to the second array for the user to input
-	size_a - the size of the first array - returned by refrence from input_array_dyn() function
-	size_b - the size of the second array - returned by refrence from input_array_dyn() function
+	size_a - the size of the first array
+	size_b - the size of the second array
 	arr_mrg - pointer to the merged array of the common numbers of array a and b
 	size_mrg - the size of the new merged array
 	i - index
 	*/
-	arr_a = input_array_dyn(&size_a);//get an input for array a by the user using input_array_dyn() function
-	arr_b = input_array_dyn(&size_b);//get an input for array b by the user using input_array_dyn() function
+	printf("Enter the size of array a: ");
+	do
+	{
+		scanf("%d", &size_a);
+		if (size_a < 1)
+			printf("Enter a number bigger than 1\n");
+	} while (size_a < 1);// get the size of array a from the user, make sure its a positive number
 
-	arr_mrg = mrg_arr(arr_a, arr_b, size_a, size_b,&size_mrg);//merge array a and b using the common number of the two arrays only
-	
+	arr_a = input_array_dyn(size_a);//get an input for array a by the user using input_array_dyn() function
+
+	printf("Enter the size of array b: ");
+	do
+	{
+		scanf("%d", &size_b);
+		if (size_b < 1)
+			printf("Enter a number bigger than 1\n");
+	} while (size_b < 1);// get the size of array b from the user, make sure its a positive number
+
+	arr_b = input_array_dyn(size_b);//get an input for array b by the user using input_array_dyn() function
+
+	arr_mrg = mrg_arr(arr_a, arr_b, size_a, size_b, &size_mrg);//merge array a and b using the common number of the two arrays only
+
 	for (i = 0;i < size_mrg;i++)//print the new merged array
 		printf("%d, ", *(arr_mrg + i));
 	printf("\nIs an array of %d members\n", size_mrg);//print the size of the new merged array
@@ -215,16 +239,16 @@ void h3_ex3()
 
 ///////////////////////////////////////////////////////////////
 
-int* mrg_arr(int*a, int*b, int n, int m,int *ret_size)//function to produce a merged array of the same nubmers from two input arrays
-/*
-a - pointer to array a
-b - pointer to arary b
-n - size of array a
-m - size of array b
-ret_size - the size of the new merged array to be returned by refrence
-*/
+int* mrg_arr(int*a, int*b, int n, int m, int *ret_size)//function to produce a merged array of the same nubmers from two input arrays
+													   /*
+													   a - pointer to array a
+													   b - pointer to arary b
+													   n - size of array a
+													   m - size of array b
+													   ret_size - the size of the new merged array to be returned by refrence
+													   */
 {
-	int *mrg, size = n, i = 0, j = 0,k = 0;
+	int *mrg, size = n, i = 0, j = 0, k = 0;
 	/*
 	mrg - pointer to the new merged array to be returned
 	size - size of the new merged array - the size of the smallest array at maximum(size of array a by defult - asuming it is the smaller array)
@@ -256,14 +280,14 @@ ret_size - the size of the new merged array to be returned by refrence
 	return mrg;//return the pointer for the new merged array
 }//complexity - O(nlogn + mlogm + n + m) = O(n(1+logn) + m(1+logm)) = O(nlogn + mlogm)
 
-///////////////////////////////////////////////////////////////
+ ///////////////////////////////////////////////////////////////
 
 void quick_sort(int*a, int first, int last)// function to sort an array using partition each time sorting the tails left around the pivot
-/*
-a - pointer to an input array
-first - the index of the first number in the array
-last - the index of the last number in the array
-*/
+										   /*
+										   a - pointer to an input array
+										   first - the index of the first number in the array
+										   last - the index of the last number in the array
+										   */
 {
 	int pos;//index of the pivot that the array is partitioned around
 	if (first < last)//while there is more than 1 number in the array
@@ -278,11 +302,11 @@ last - the index of the last number in the array
 ///////////////////////////////////////////////////////////////
 
 int partition(int*a, int left, int right)//function to sort the array arround a pivot number (smaller and bigger than the pivot)
-/*
-a - pointer to an input array
-first - the index of the first number in the array
-last - the index of the last number in the array
-*/
+										 /*
+										 a - pointer to an input array
+										 first - the index of the first number in the array
+										 last - the index of the last number in the array
+										 */
 {
 	int first = left, pivot, pos;
 	/*
@@ -326,18 +350,26 @@ void h3_ex4()
 	i - index
 	*/
 	printf("Enter 2 arrays of the same size!!!\n");
-	arr_a = input_array_dyn(&size);//get an input for array a by the user using input_array_dyn() function
-	arr_b = (int*)malloc(size * sizeof(int));//allocate memorry for array b
-	printf("Enter %d numbers:\n", size);
-	for (i = 0;i < size;i++)//get the input number from the user to fill array b
-		scanf("%d", (arr_b + i));
-	
+
+	printf("Enter the size of the arrays: ");
+	do
+	{
+		scanf("%d", &size);
+		if (size < 1)
+			printf("Enter a number bigger than 1\n");
+	} while (size < 1);// get the size of an array from the user, make sure its a positive number
+
+
+	arr_a = input_array_dyn(size);//get an input for array a by the user using input_array_dyn() function
+	arr_b = input_array_dyn(size);//get an input for array b by the user using input_array_dyn() function
+
 	printf("\nChoose how you want to solve the problem\n"
 		"1 - O(nlogn) loop\n"
 		"2 - Recursion\n"
 		"3 - O(n) while the members of the arrays are 1-100\n\n");
 	do
 	{
+		printf("Enter your choise: ");
 		scanf("%d", &select);
 		if (select < 0 || select > 3)
 			printf("\nChoose how you want to solve the problem\n"
@@ -382,13 +414,13 @@ void h3_ex4()
 ///////////////////////////////////////////////////////////////
 
 int arr_common(int *a, int *b, int size)//function to determine if array b is part of array a
-/*
-a - pointer to array a
-b - pointer to array b
-size - the common size between the two arrays
-*/
+										/*
+										a - pointer to array a
+										b - pointer to array b
+										size - the common size between the two arrays
+										*/
 {
-	int i,key,flag=1;
+	int i, key, flag = 1;
 	/*
 	i - index
 	key - to search a number in an array
@@ -404,14 +436,14 @@ size - the common size between the two arrays
 	return flag;//return the flag, if array b is part of array a the flag is 1 if not the flag is 0
 }//complexity - O(nlogn + n*logn) = O(2nlogn) = O(nlogn)
 
-///////////////////////////////////////////////////////////////
+ ///////////////////////////////////////////////////////////////
 
 int arr_common_r(int *a, int *b, int size)//function to determine if array b is part of array a using a recursion
-/*
-a - pointer to array a
-b - pointer to array b
-size - the common size between the two arrays
-*/
+										  /*
+										  a - pointer to array a
+										  b - pointer to array b
+										  size - the common size between the two arrays
+										  */
 {
 	int n1_index, n2_index;
 	/*
@@ -427,42 +459,42 @@ size - the common size between the two arrays
 	n2_index = min_arry(b, size);//get the index of the smallest number in array b
 	if (*(a + n1_index) != *(b + n2_index))//if the smallest numbers in each array are diffrenet return 0
 		return 0;
-	swaper(a+size-1, a + n1_index);//move the smallest number in array a to the last position of the array
-	swaper(b+size-1, b + n2_index);//move the smallest number in array b to the last position of the array
+	swaper(a + size - 1, a + n1_index);//move the smallest number in array a to the last position of the array
+	swaper(b + size - 1, b + n2_index);//move the smallest number in array b to the last position of the array
 	return arr_common_r(a, b, size - 1);//summon recursion of arr_common_r() function with the size of both arrays samller by 1
 }
 
 ///////////////////////////////////////////////////////////////
 
 int arr_common_100(int *a, int *b, int size)//function to determine if array b is part of array while the members of the arrays are 1-100
-/*
-a - pointer to array a
-b - pointer to array b
-size - the common size between the two arrays
-*/
+											/*
+											a - pointer to array a
+											b - pointer to array b
+											size - the common size between the two arrays
+											*/
 {
 	int count_array_a[100] = { 0 }, count_array_b[100] = { 0 }, i;
 
 	for (i = 0;i < size;i++)//count all the apearences of each number in array a - O(n)
 		*(count_array_a + *(a + i) - 1) += 1;
 	for (i = 0;i < size;i++)//count all the apearences of each number in array b - O(n)
-		*(count_array_b+*(b+i)-1) += 1;
+		*(count_array_b + *(b + i) - 1) += 1;
 	for (i = 0;i < 100;i++)// O(100)
 		if (*(count_array_b + i) != *(count_array_a + i))//check that all the apearences of array b are also apearing in array a
 			return 0;//if not return 0
 	return 1;
 }//complexity - O(n+n+100) = O(2n+100) = O(n)
 
-///////////////////////////////////////////////////////////////
+ ///////////////////////////////////////////////////////////////
 
 int binary_search(int *a, int size, int key)//function for binary search for a specific number in an array
-/*
-a - pointer to a sorted array
-size - size of the array
-key - a number to search in the array
-*/
+											/*
+											a - pointer to a sorted array
+											size - size of the array
+											key - a number to search in the array
+											*/
 {
-	int first=0,last=size-1,mid;
+	int first = 0, last = size - 1, mid;
 	/*
 	first - index for the first number in the array
 	last - index for the last number in the array
@@ -474,9 +506,9 @@ key - a number to search in the array
 		if (*(a + mid) == key)//if the number in the middle index equals to the key then its found and return 1
 			return 1;
 		if (key < *(a + mid))//it the number in the middle index is bigger than the key then continue the search on the left side
-			last = mid-1;
+			last = mid - 1;
 		else if (key > *(a + mid))//it the number in the middle index is smaller than the key then continue the search on the right side
-			first = mid+1;
+			first = mid + 1;
 	}
 	return 0;//if key in not found in the array return 0
 }
@@ -484,12 +516,12 @@ key - a number to search in the array
 ///////////////////////////////////////////////////////////////
 
 int min_arry(int*a, int size)//function to return the index of the smallest number in the array
-/*
-a - pointer of the array
-size - size of the array
-*/
+							 /*
+							 a - pointer of the array
+							 size - size of the array
+							 */
 {
-	int *low=a,*high=a+size-1;
+	int *low = a, *high = a + size - 1;
 	/*
 	low - pointer to the first number
 	high - pointer to the last number
@@ -501,7 +533,7 @@ size - size of the array
 		else//if the right side is smaller then afvance the left side
 			low++;
 	}
-	return low-a;//return the index of the lowest number
+	return low - a;//return the index of the lowest number
 }
 
 ///////////////////////////////////////////////////////////////
@@ -514,11 +546,11 @@ void h3_ex5()
 	key - the letter to remove from the string
 	*/
 	str = input_str_dyn();//get an input of the string by the user using input_str_dyn() function
-	
+
 	printf("Enter the letter you want to remove from the string: ");
 	scanf(" %c", &key);
 	remove_char(str, key);//remove the letter selected from the string
-	
+
 	printf("%s\n", str);
 
 	str = (char*)realloc(str, strlen(str) * sizeof(char));//do a memorry reallocation to the string in the correct size after the letter removal
@@ -531,12 +563,12 @@ void h3_ex5()
 ///////////////////////////////////////////////////////////////
 
 void remove_char(char *str, char ch)//function to remove a specific char from a string and return a new modified string whtout the char
-/*
-str - pointer to the char array
-ch - letter to remove from the string
-*/
+									/*
+									str - pointer to the char array
+									ch - letter to remove from the string
+									*/
 {
-	int i,j,size,count=0;
+	int i, j, size, count = 0;
 	/*
 	i - index a
 	j - index b
@@ -544,10 +576,10 @@ ch - letter to remove from the string
 	count - count how many chars needs to be removed
 	*/
 	size = strlen(str);//get the size of the string inputed by the user
-	for (i = size-1;i >=0;i--)//check each letter in the string from the last to the first
+	for (i = size - 1;i >= 0;i--)//check each letter in the string from the last to the first
 		if (*(str + i) == ch)//if the letter that needs to be removed is found
 		{
-			for (j = i;j < size-1;j++)//go from the position of the letter that need to be removed to the end of the string
+			for (j = i;j < size - 1;j++)//go from the position of the letter that need to be removed to the end of the string
 				ch_swaper(str + j, str + j + 1);//swap each time until the letter that is found is the last
 			count++;//count how many letters needs to be removed
 		}
@@ -556,25 +588,18 @@ ch - letter to remove from the string
 
 ///////////////////////////////////////////////////////////////
 
-int* input_array_dyn(int *size) // function to define an array, its size and its members, returns the size of the array by refrence
-//size - size of an array - to be returned by refrence
+int* input_array_dyn(int size) // function to define an array, its size and its members, returns the size of the array by refrence
+							   //size - size of an array - to be returned by refrence
 {
-	int *a,i;
+	int *a, i;
 	/*
 	a - pointer to the array
 	i - index
 	*/
-	printf("Enter the size of your array: ");
-	do
-	{
-		scanf("%d", size);
-		if (*size < 1)
-			printf("Enter a number bigger than 1\n");
-	} while (*size < 1);// get the size of an array from the user, make sure its a positive number
-	a = (int*)malloc(*size * sizeof(int));//allocate memorry for the array
+	a = (int*)malloc(size * sizeof(int));//allocate memorry for the array
 
-	printf("Enter %d numbers:\n", *size);
-	for (i = 0;i < *size;i++)//get the input number from the user to fill the array
+	printf("Enter %d numbers:\n", size);
+	for (i = 0;i < size;i++)//get the input number from the user to fill the array
 		scanf("%d", (a + i));
 	return a;//return the pointer of the array
 }
@@ -591,7 +616,7 @@ char* input_str_dyn()// function to get a dynamic input of a string from the use
 	printf("Enter your string: ");
 	scanf("%s", temp_str);
 	str = (char*)malloc(strlen(temp_str) * sizeof(char));//allocate memorry for the char array in the size of the input string from the user
-	
+
 	strcpy(str, temp_str);//copy the string entered from the user from the temporary array to the array that to be returned
 	return str;//return the pointer to the char array containing the user's string
 
@@ -616,11 +641,3 @@ void ch_swaper(char *a, char*b)//funcrion to swap the position of two chars in a
 }
 
 ////////////////////////////////////////////////////////////////
-
-int abso(int a) //function to return an absolut value of a number
-{
-	if (a >= 0)//if the number is positive return the number
-		return a;
-	else
-		return a*(-1);//if the number is negative, turn it to positive by multipling by -1 and return the positive number
-}
