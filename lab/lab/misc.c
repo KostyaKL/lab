@@ -5,7 +5,11 @@
 
 int misc1();
 int misc2();
-
+int func(int*,int,int);
+int* input_array_dyn(int);
+char* input_str_dyn();
+void quick_sort(int*, int, int);
+int binary_search(int*, int, int);
 
 
 
@@ -40,7 +44,7 @@ int misc()
 		return main();
 	}
 
-	if (strcmp(drill_num, "quit") == 0)
+	if (strcmp(drill_num, "0") == 0)
 	{
 		exit(0);
 	}
@@ -59,14 +63,46 @@ int misc()
 
 int misc1()
 {
-	int num;
-	printf("Enter the amount of coins: ");
-	scanf("%d", &num);
-	hanoy(num,0,0,0);
+	int mat[3][3];
 
-	printf("\n");
+	mat[0][0] = 2;
+	mat[0][1] = 6;
+	mat[0][2] = 9;
+	mat[1][0] = 4;
+	mat[1][1] = 3;
+	mat[1][2] = 5;
+	mat[2][0] = 1;
+	mat[2][1] = 7;
+	mat[2][2] = 3;
+
+
+	printf("abs = %d\n", func(mat,3,3));
 	system("pause");
+	
+
 	return misc();
+}
+
+//////////////////////////////////////////////////////////////////
+
+int func(int mat[][3], int row,int col)
+{
+	int i, j, k;
+	int *a, s;
+	s = row*col;
+	a = (int*)malloc(s * sizeof(int));
+	for (i = 0, k = 0;i < row;i++)
+		for (j = 0;j < col;j++, k++)
+			*(a + k) = mat[i][j];
+	quick_sort(a, 0, s - 1);
+	for (k = 1;k < s;k++)
+		if (*(a + k - 1) == *(a + k))
+		{
+			free(a);
+			return 0;
+		}
+	free(a);
+	return 1;
 }
 
 //////////////////////////////////////////////////////////////////

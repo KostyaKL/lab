@@ -3,13 +3,25 @@
 #include <string.h>
 #include <math.h>
 
+#define R 5
+#define C 4
 
+typedef int matrix[R][C];
 
 int lab12_ex_1();
+int is_sym(matrix);
+
 int lab12_ex_2();
+void round_mat_move(matrix);
+
 int lab12_ex_3();
+void rotate_matrix(matrix);
+
 int lab12_ex_4();
 
+void input_matrix(matrix);
+void print_matrix(matrix);
+void swp(int*, int*);
 
 
 
@@ -19,9 +31,9 @@ int lab12()
 	system("cls");
 	printf("Welcome to lab 12 Page!\n"
 		"_____________________________\n"
-		"1 - aaa\n"
-		"2 - aaa\n"
-		"3 - aaa\n"
+		"1 - Is Symetric\n"
+		"2 - Round Matrix move\n"
+		"3 - Rotate Matrix by 90 deg\n"
 		"4 - aaa\n"
 		"\n"
 
@@ -79,16 +91,40 @@ int lab12()
 
 int lab12_ex_1()
 {
-	
+	matrix mat;
+	input_matrix(mat);
+	printf("The matrix is symetric: %d", is_sym(mat));
+
 	printf("\n");
 	system("pause");
 	return lab12();
+}
+
+//////////////////////////////////////////////////////////////////
+
+int is_sym(matrix m)
+{
+	int i, j;
+	for (i = 0;i < R;i++)
+		for (j = 0;j < R;j++)
+			if (m[i][j] != m[j][i])
+				return 0;
+	return 1;
 }
 
 //////////////////////////////////////////////////////////////////
 
 int lab12_ex_2()
 {
+	matrix mat;
+	input_matrix(mat);
+
+	print_matrix(mat);
+
+	round_mat_move(mat);
+	printf("\n\n"
+		"Matrix after round move: ");
+	print_matrix(mat);
 
 	printf("\n");
 	system("pause");
@@ -97,12 +133,45 @@ int lab12_ex_2()
 
 //////////////////////////////////////////////////////////////////
 
+void round_mat_move(matrix m)
+{
+	int i, j;
+	for (i = 0;i < R;i++)
+		for (j = 0;j < C - 1;j++)
+			swp(&m[i][j], &m[i][j + 1]);
+}
+
+//////////////////////////////////////////////////////////////////
+
 int lab12_ex_3()
 {
+	matrix mat;
+	input_matrix(mat);
+	print_matrix(mat);
+
+	rotate_matrix(mat);
+	printf("\n\n"
+		"Matrix after rotation by 90 deg: ");
+	print_matrix(mat);
+
 
 	printf("\n");
 	system("pause");
 	return lab12();
+}
+
+//////////////////////////////////////////////////////////////////
+
+void rotate_matrix(matrix m)
+{
+	int i, j,r,c;
+	matrix tmp;
+	for (c=R-1,i = 0;i < R;i++,c--)
+		for (r=0,j = 0;j < C;j++,r++)
+			tmp[r][c]=m[i][j];
+	for (i = 0;i < R;i++)
+		for (j = 0;j < C;j++)
+			m[i][j] = tmp[i][j];
 }
 
 //////////////////////////////////////////////////////////////////
@@ -113,6 +182,41 @@ int lab12_ex_4()
 	printf("\n");
 	system("pause");
 	return lab12();
+}
+
+//////////////////////////////////////////////////////////////////
+
+void input_matrix(matrix m)
+{
+	int i, j;
+	for (i = 0;i < R;i++)
+	{
+		printf("Enter value for row %d: ", i+1);
+		for (j = 0;j < C;j++)
+			scanf("%d", &m[i][j]);
+	}
+}
+
+//////////////////////////////////////////////////////////////////
+
+void print_matrix(matrix m)
+{
+	int i, j;
+	for (i = 0;i < R;i++)
+	{
+		printf("\n");
+		for (j = 0;j < C;j++)
+			printf("%d ", m[i][j]);
+	}
+}
+
+//////////////////////////////////////////////////////////////////
+
+void swp(int*a, int*b)
+{
+	int temp = *a;
+	*a = *b;
+	*b = temp;
 }
 
 //////////////////////////////////////////////////////////////////

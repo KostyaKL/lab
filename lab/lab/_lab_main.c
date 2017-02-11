@@ -37,8 +37,8 @@ int main()
 		   "4 - Ascii\n"
 		   "5 - Test\n"
 		   "6 - Console commands\n"
-		   "8 - Misc\n"
-		   "7 - Pause\n\n"
+		   "7 - Misc\n"
+		   "8 - Pause\n\n"
 
 		   "Exit - Quit\n");
 	printf("Enter your choise: ");

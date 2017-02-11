@@ -37,7 +37,7 @@ void swaper(int*, int*);//function to swap the position of two number in an arra
 void ch_swaper(char*, char*);//funcrion to swap the position of two chars in a strinf - by refrence
 
 
-void main()
+void hagasha_3()
 {
 	int select = 0, i, all_Ex_in_loop = 0;
 	/*
@@ -75,6 +75,7 @@ void main()
 				break;
 			}
 		} while (all_Ex_in_loop && select); //determin if the program will return to main menu at the end of an exersice or it will exit
+		return main();
 }
 
 ///////////////////////////////////////////////////////////////
@@ -553,7 +554,7 @@ void h3_ex5()
 
 	printf("%s\n", str);
 
-	str = (char*)realloc(str, strlen(str) * sizeof(char));//do a memorry reallocation to the string in the correct size after the letter removal
+	str = (char*)realloc(str, strlen(str) * sizeof(char) + 1);//do a memorry reallocation to the string in the correct size after the letter removal
 
 	free(str);
 	printf("\n");
@@ -584,6 +585,7 @@ void remove_char(char *str, char ch)//function to remove a specific char from a 
 			count++;//count how many letters needs to be removed
 		}
 	*(str + size - count) = 0;//mark the end of the rearanged string
+
 }
 
 ///////////////////////////////////////////////////////////////
@@ -615,7 +617,7 @@ char* input_str_dyn()// function to get a dynamic input of a string from the use
 	*/
 	printf("Enter your string: ");
 	scanf("%s", temp_str);
-	str = (char*)malloc(strlen(temp_str) * sizeof(char));//allocate memorry for the char array in the size of the input string from the user
+	str = (char*)malloc(strlen(temp_str) * sizeof(char)+sizeof(char));//allocate memorry for the char array in the size of the input string from the user
 
 	strcpy(str, temp_str);//copy the string entered from the user from the temporary array to the array that to be returned
 	return str;//return the pointer to the char array containing the user's string
